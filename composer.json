@@ -1,6 +1,14 @@
 {
     "require": {
         "vlucas/phpdotenv": "^5.4",
-        "altorouter/altorouter": "^2.0"
+        "altorouter/altorouter": "^2.0",
+        "illuminate/database": "^8.82",
+        "jenssegers/blade": "^1.4"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
     }
 }
