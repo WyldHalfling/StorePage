@@ -19,6 +19,7 @@ class ComposerStaticInit5908b6bf298e8a701664f40ec0dabc61
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         'ef65a1626449d89d0811cf9befce46f0' => __DIR__ . '/..' . '/illuminate/events/functions.php',
+        '01037c37b1093bd1affa5b83399f2381' => __DIR__ . '/../..' . '/app/functions/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -75,6 +76,12 @@ class ComposerStaticInit5908b6bf298e8a701664f40ec0dabc61
         'C' => 
         array (
             'Carbon\\' => 7,
+        ),
+        'A' => 
+        array (
+            'App\\Controllers\\' => 16,
+            'App\\Classes\\' => 12,
+            'App\\' => 4,
         ),
     );
 
@@ -201,10 +208,26 @@ class ComposerStaticInit5908b6bf298e8a701664f40ec0dabc61
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
+        'App\\Controllers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/controllers',
+        ),
+        'App\\Classes\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/classes',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/routing',
+            1 => __DIR__ . '/../..' . '/app',
+        ),
     );
 
     public static $classMap = array (
         'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
+        'App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/app/controllers/BaseController.php',
+        'App\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/controllers/IndexController.php',
+        'App\\RouteDispatcher' => __DIR__ . '/../..' . '/app/routing/RouteDispatcher.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Carbon\\AbstractTranslator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/AbstractTranslator.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
