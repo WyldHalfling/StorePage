@@ -3,6 +3,5 @@
 namespace App\Controllers;
 
 class BaseController {
-
     
 }
