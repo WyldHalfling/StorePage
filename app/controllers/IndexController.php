@@ -9,8 +9,8 @@ class IndexController extends BaseController {
         echo "Inside Homepage from controller class";
 
         $mail = new Mail();
-        $data = [
-            'to' => 'philkonsor@hotmail.com',
+        $datas = [
+            'to' => $_ENV['TEST_EMAIL'],
             'subject' => 'Welcome to PK Store',
             'view' => 'welcome',
             'name' => 'John Doe',
