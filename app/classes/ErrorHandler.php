@@ -15,6 +15,19 @@ class ErrorHandler {
             $whoops = new \Whoops\Run;
             $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
             $whoops->register();
+
+            /** / // Take out after live... for testing withouth proper email system! 
+            $data = [
+                //'to' => $_ENV['ADMIN_EMAIL'],
+                'to' => $_ENV['TEST_EMAIL'],
+                'subject' => 'System Error',
+                'view' => 'errors',
+                'name' => 'Admin',
+                'body' => $error
+            ];
+            ErrorHandler::emailAdmin($data);//->outputFriendlyError();
+            /**/
+
         } else {
             $data = [
                 //'to' => $_ENV['ADMIN_EMAIL'],
