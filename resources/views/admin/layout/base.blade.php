@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Admin Panel - @yield('title')</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/public/css/all.css">
-    </head>
-    <body>
-        <div class="off-canvas position-left reveal-for-large" id="offCanvas" data-off-canvas>
-            <!-- Side Bar -->
-            <ul class="vertical menu">
-                <li><a href="#">Foundation</a></li>
-                <li><a href="#">Dot</a></li>
-                <li><a href="#">ZURB</a></li>
-                <li><a href="#">Com</a></li>
-                <li><a href="#">Slash</a></li>
-                <li><a href="#">Sites</a></li>
-            </ul>
-            <!-- end Side Bar -->
-        </div>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin Panel - @yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/all.css" >
+    <script src="https://use.fontawesome.com/1504552d47.js"></script>
+</head>
+<body data-page-id="@yield('data-page-id')">
 
-        <div class="off-canvas-content" data-off-canvas-content>
-            <!-- Your page content lives here -->
-            @yield('content')
-        </div>
+@include('includes.admin-sidebar')
 
-        <script src="/public/js/all.js"></script>      
-    </body>
+<div class="off-canvas-content admin_title_bar" data-off-canvas-content>
+    <!-- Your page content lives here -->
+    <div class="title-bar">
+        <div class="title-bar-left">
+            <button class="menu-icon hide-for-large" type="button" data-open="offCanvas"></button>
+            <span class="title-bar-title">{{ $_ENV['APP_NAME'] }}</span>
+        </div>
+    </div>
+    
+    @yield('content')
+</div>
+
+<script async src="/js/all.js"></script>
+</body>
 </html>

@@ -1,10 +1,11 @@
 
 
 <?php $__env->startSection('title', 'Dashboard'); ?>
+<?php $__env->startSection('data-page-id', 'adminDashboard'); ?>
 
 <?php $__env->startSection('content'); ?>
     <div class="dashbaord">
-        <div class="row expanded">
+        <div class="grid-x expanded">
             <h2>Dashboard</h2>
         </div>
     </div>
