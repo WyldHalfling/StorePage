@@ -6652,7 +6652,48 @@ html.is-reveal-open body {
 
 /** /
 @import "global";
-@import "admin/nav";
+/**/
+.nav {
+  background-color: #2A3F54;
+}
+.nav .menu > li > a {
+  color: #ffffff;
+  font-size: 19px;
+}
+.nav .menu > li > a:hover, .nav .menu > li > a:focus, .nav .menu > li > a:active {
+  background-color: #1c2b39;
+}
+.nav h3 {
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 500;
+}
+.nav .image-holder {
+  padding: 11px;
+  background-color: #E93F49;
+}
+.nav .image-holder img {
+  border-radius: 50%;
+  border: 1px solid #c51721;
+  padding: 5px;
+  height: 200px;
+  width: 200px;
+}
+.nav .image-holder p {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.admin_title_bar .title-bar {
+  background-color: #EDEDED;
+}
+.admin_title_bar .title-bar .title-bar-title {
+  font-size: 24px;
+  color: #0A0A0A;
+}
+
+/** /
 @import "pages/nav";
 @import "admin/dashboard";
 @import "pages/home";
