@@ -2185,8 +2185,24 @@ require('../../assets/js/pages/home_products');
 require('../../assets/js/pages/lib');
 require('../../assets/js/pages/product_details');
 require('../../assets/js/pages/slider');
-require('../../assets/js/init');
 /**/
+
+
+__webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js");
+
+/***/ }),
+
+/***/ "./resources/assets/js/init.js":
+/*!*************************************!*\
+  !*** ./resources/assets/js/init.js ***!
+  \*************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  $(document).foundation();
+})();
 
 /***/ }),
 
