@@ -7,6 +7,8 @@
     <div class="dashbaord">
         <div class="grid-x expanded">
             <h2>Dashboard</h2>
+            <?php echo e($admin); ?>
+
         </div>
     </div>
 <?php $__env->stopSection(); ?>
