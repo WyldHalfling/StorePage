@@ -5,9 +5,11 @@
 
 @section('content')
     <div class="dashbaord">
-        <div class="grid-x expanded">
+        <div class="row expanded">
             <h2>Dashboard</h2>
-            {{ $admin }}
+            {{ \App\Classes\CSRFToken::_token() }}
+            <br>
+            {{ \App\Classes\Session::get('token') }}
         </div>
     </div>
 @endsection

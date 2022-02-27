@@ -5,9 +5,12 @@
 
 <?php $__env->startSection('content'); ?>
     <div class="dashbaord">
-        <div class="grid-x expanded">
+        <div class="row expanded">
             <h2>Dashboard</h2>
-            <?php echo e($admin); ?>
+            <?php echo e(\App\Classes\CSRFToken::_token()); ?>
+
+            <br>
+            <?php echo e(\App\Classes\Session::get('token')); ?>
 
         </div>
     </div>

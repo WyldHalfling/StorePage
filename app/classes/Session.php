@@ -5,7 +5,7 @@ namespace App\Classes;
 use Exception;
 
 class Session {
-    /*
+    /**
      * create a session
      * 
      * @param $name
@@ -22,7 +22,7 @@ class Session {
         throw new \Exception('Name and value required');
     }
 
-    /*
+    /**
      * get value from session
      *
      * @param $name
@@ -32,7 +32,7 @@ class Session {
         return $_SESSION[$name];
     }
 
-    /* 
+    /** 
      * check if session exiists
      * 
      * @param $name
@@ -47,9 +47,8 @@ class Session {
         throw new \Exception('Name is required');
     }
     
-    /*
+    /**
      * remove session
-     * 
      * @param $name
     */ 
     public static function remove($name) {
