@@ -7,11 +7,11 @@
     <div class="dashbaord">
         <div class="row expanded">
             <h2>Dashboard</h2>
-            <?php echo e(\App\Classes\CSRFToken::_token()); ?>
-
-            <br>
-            <?php echo e(\App\Classes\Session::get('token')); ?>
-
+            <form action="/admin" method="post" enctype="multipart/form-data">
+                <input name="product" value="testing">
+                <input type="file" name="image">
+                <input type="submit" value="Go" name="submit">
+            </form>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
