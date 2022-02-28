@@ -7,8 +7,15 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AltoRouter' => $vendorDir . '/altorouter/altorouter/AltoRouter.php',
+    'App\\Classes\\CSRFToken' => $baseDir . '/app/classes/CSRFToken.php',
     'App\\Classes\\Database' => $baseDir . '/app/classes/Database.php',
+    'App\\Classes\\ErrorHandler' => $baseDir . '/app/classes/ErrorHandler.php',
     'App\\Classes\\Mail' => $baseDir . '/app/classes/Mail.php',
+    'App\\Classes\\Redirect' => $baseDir . '/app/classes/Redirect.php',
+    'App\\Classes\\Request' => $baseDir . '/app/classes/Request.php',
+    'App\\Classes\\Session' => $baseDir . '/app/classes/Session.php',
+    'App\\Classes\\UploadFile' => $baseDir . '/app/classes/UploadFile.php',
+    'App\\Classes\\ValidateRequest' => $baseDir . '/app/classes/ValidateRequest.php',
     'App\\Controllers\\BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'App\\Controllers\\IndexController' => $baseDir . '/app/controllers/IndexController.php',
     'App\\RouteDispatcher' => $baseDir . '/app/routing/RouteDispatcher.php',
@@ -89,6 +96,7 @@ return array(
     'Carbon\\Traits\\Units' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Units.php',
     'Carbon\\Traits\\Week' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Week.php',
     'Carbon\\Translator' => $vendorDir . '/nesbot/carbon/src/Carbon/Translator.php',
+    'Carbon\\TranslatorImmutable' => $vendorDir . '/nesbot/carbon/src/Carbon/TranslatorImmutable.php',
     'Carbon\\TranslatorStrongTypeInterface' => $vendorDir . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Doctrine\\Inflector\\CachedWordInflector' => $vendorDir . '/doctrine/inflector/lib/Doctrine/Inflector/CachedWordInflector.php',
@@ -931,4 +939,6 @@ return array(
     'Whoops\\Util\\SystemFacade' => $vendorDir . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
     'Whoops\\Util\\TemplateHelper' => $vendorDir . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
     'voku\\helper\\ASCII' => $vendorDir . '/voku/portable-ascii/src/voku/helper/ASCII.php',
+    'voku\\helper\\Paginator' => $vendorDir . '/voku/pagination/src/voku/helper/Paginator.php',
+    'voku\\helper\\PaginatorHelper' => $vendorDir . '/voku/pagination/src/voku/helper/PaginatorHelper.php',
 );
