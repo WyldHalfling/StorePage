@@ -2208,7 +2208,6 @@ module.exports = {
           $(".notification").css("display", 'block').delay(6000).slideUp(300).html(respone.ul);
         }
       });
-      alert(token + ' and is: ' + id + " and name is: " + name);
       e.preventDefault();
     });
   };

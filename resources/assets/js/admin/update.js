@@ -28,7 +28,6 @@
                 }
             });
 
-            alert(token + ' and is: ' + id + " and name is: " + name);
             e.preventDefault();
         });
     };
