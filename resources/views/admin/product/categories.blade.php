@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 @section('title', 'Products Categories')
-@section('data-page-id', 'adminDashboard')
+@section('data-page-id', 'adminCategories')
 
 @section('content')
     <div class="category">
@@ -46,8 +46,27 @@
                                     <td>{{ $category['slug'] }}</td>
                                     <td>{{ $category['added'] }}</td>
                                     <td width="100" class="text-right">
-                                        <a href="#"><i class="fa fa-edit"></i></a>
+                                        <a data-open="item-{{$category['id']}}"><i class="fa fa-edit"></i></a>
                                         <a href="#"><i class="fa fa-times"></i></a>
+
+                                        <!-- Edit Category Model -->
+                                        <div class="reveal" id="item-{{$category['id']}}" 
+                                        data-reveal data-close-on-click="false" data-close-on-esc="false">
+                                            <h2>Edit Category</h2>
+                                            <form>
+                                                <div class="input-group">
+                                                    <input type="text" id="item-name-{{$category['id']}}" name="name" value="{{ $category['name'] }}">
+                                                    <div>
+                                                        <input type="submit" class="button update-category" id="{{$category['id']}}"
+                                                        data-token="{{ \App\Classes\CSRFToken::_token() }}"
+                                                        value="Update">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <button class="close-button" data-close aria-label="Close modal" type="button">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
                                     </td>
                                 </tr>
                             @endforeach

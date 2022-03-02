@@ -1,6 +1,6 @@
 
 <?php $__env->startSection('title', 'Products Categories'); ?>
-<?php $__env->startSection('data-page-id', 'adminDashboard'); ?>
+<?php $__env->startSection('data-page-id', 'adminCategories'); ?>
 
 <?php $__env->startSection('content'); ?>
     <div class="category">
@@ -46,8 +46,27 @@
                                     <td><?php echo e($category['slug']); ?></td>
                                     <td><?php echo e($category['added']); ?></td>
                                     <td width="100" class="text-right">
-                                        <a href="#"><i class="fa fa-edit"></i></a>
+                                        <a data-open="item-<?php echo e($category['id']); ?>"><i class="fa fa-edit"></i></a>
                                         <a href="#"><i class="fa fa-times"></i></a>
+
+                                        <!-- Edit Category Model -->
+                                        <div class="reveal" id="item-<?php echo e($category['id']); ?>" 
+                                        data-reveal data-close-on-click="false" data-close-on-esc="false">
+                                            <h2>Edit Category</h2>
+                                            <form>
+                                                <div class="input-group">
+                                                    <input type="text" id="item-name-<?php echo e($category['id']); ?>" name="name" value="<?php echo e($category['name']); ?>">
+                                                    <div>
+                                                        <input type="submit" class="button update-category" id="<?php echo e($category['id']); ?>"
+                                                        data-token="<?php echo e(\App\Classes\CSRFToken::_token()); ?>"
+                                                        value="Update">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <button class="close-button" data-close aria-label="Close modal" type="button">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
