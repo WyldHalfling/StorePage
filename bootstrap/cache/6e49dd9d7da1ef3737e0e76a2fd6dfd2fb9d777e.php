@@ -1,15 +1,16 @@
 
-<?php $__env->startSection('title', 'Products Categories'); ?>
+<?php $__env->startSection('title', 'Product Categories'); ?>
 <?php $__env->startSection('data-page-id', 'adminCategories'); ?>
 
 <?php $__env->startSection('content'); ?>
     <div class="category">
         <div class="grid-x grid-padding-x">
-            <h2>Products Categories</h2>
+            <h2>Product Categories</h2>
         </div>
-
+        
         <?php echo $__env->make('includes.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
+        <!-- Search bar -->
         <div class="grid-x grid-padding-x">
             <div class="small-12 medium-6 column">
                 <form action="" method="post">
@@ -22,6 +23,7 @@
                 </form>
             </div>
 
+            <!-- Create bar -->
             <div class="small-12 medium-5 end column">
                 <form action="/admin/product/categories" method="post">
                     <div class="input-group">
@@ -35,10 +37,11 @@
             </div>
         </div>
 
+        <!-- List of categories -->
         <div class="grid-x grid-padding-x">
             <div class="small-12 medium-11 column">
                 <?php if(count($categories)): ?> 
-                    <table class="hover">
+                    <table class="hover" data-form="deleteForm">
                         <tbody>
                             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
@@ -49,23 +52,23 @@
                                         <a data-open="item-<?php echo e($category['id']); ?>"><i class="fa fa-edit"></i></a>
                                         <a href="#"><i class="fa fa-times"></i></a>
 
-                                        <!-- Edit Category Model -->
+                                        <!-- Edit Categories -->
                                         <div class="reveal" id="item-<?php echo e($category['id']); ?>" 
-                                        data-reveal data-close-on-click="false" data-close-on-esc="false">
+                                          data-reveal data-close-on-click="false" data-close-on-esc="false">
+                                            <div class="notification"></div>
                                             <h2>Edit Category</h2>
                                             <form>
                                                 <div class="input-group">
-                                                    <input type="text" id="item-name-<?php echo e($category['id']); ?>" name="name" value="<?php echo e($category['name']); ?>">
+                                                    <input type="text" name="name" id="item-name-<?php echo e($category['id']); ?>" value="<?php echo e($category['name']); ?>">
+                                                    <input type="hidden" name="token" value="<?php echo e(\App\Classes\CSRFToken::_token()); ?>">
                                                     <div>
-                                                        <input type="submit" class="button update-category" id="<?php echo e($category['id']); ?>"
-                                                        data-token="<?php echo e(\App\Classes\CSRFToken::_token()); ?>"
-                                                        value="Update">
+                                                        <input type="submit" class="button update-category" id="<?php echo e($category['id']); ?>" value="Update">
                                                     </div>
                                                 </div>
                                             </form>
-                                            <button class="close-button" data-close aria-label="Close modal" type="button">
+                                            <a class="close-button" data-close aria-label="Close modal" type="button">
                                               <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </a>
                                           </div>
                                     </td>
                                 </tr>

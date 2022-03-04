@@ -63,7 +63,7 @@ class ProductCategoryController {
 
         return null;
     }
-
+    
     public function edit($id) {
         if (Request::has('post')) {
             $request = Request::get('post');

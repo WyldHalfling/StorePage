@@ -1,15 +1,16 @@
 @extends('admin.layout.base')
-@section('title', 'Products Categories')
+@section('title', 'Product Categories')
 @section('data-page-id', 'adminCategories')
 
 @section('content')
     <div class="category">
         <div class="grid-x grid-padding-x">
-            <h2>Products Categories</h2>
+            <h2>Product Categories</h2>
         </div>
-
+        
         @include('includes.message')
 
+        <!-- Search bar -->
         <div class="grid-x grid-padding-x">
             <div class="small-12 medium-6 column">
                 <form action="" method="post">
@@ -22,6 +23,7 @@
                 </form>
             </div>
 
+            <!-- Create bar -->
             <div class="small-12 medium-5 end column">
                 <form action="/admin/product/categories" method="post">
                     <div class="input-group">
@@ -35,10 +37,11 @@
             </div>
         </div>
 
+        <!-- List of categories -->
         <div class="grid-x grid-padding-x">
             <div class="small-12 medium-11 column">
                 @if(count($categories)) 
-                    <table class="hover">
+                    <table class="hover" data-form="deleteForm">
                         <tbody>
                             @foreach($categories as $category)
                                 <tr>
@@ -49,23 +52,23 @@
                                         <a data-open="item-{{$category['id']}}"><i class="fa fa-edit"></i></a>
                                         <a href="#"><i class="fa fa-times"></i></a>
 
-                                        <!-- Edit Category Model -->
+                                        <!-- Edit Categories -->
                                         <div class="reveal" id="item-{{$category['id']}}" 
-                                        data-reveal data-close-on-click="false" data-close-on-esc="false">
+                                          data-reveal data-close-on-click="false" data-close-on-esc="false">
+                                            <div class="notification"></div>
                                             <h2>Edit Category</h2>
                                             <form>
                                                 <div class="input-group">
-                                                    <input type="text" id="item-name-{{$category['id']}}" name="name" value="{{ $category['name'] }}">
+                                                    <input type="text" name="name" id="item-name-{{$category['id']}}" value="{{ $category['name'] }}">
+                                                    <input type="hidden" name="token" value="{{ \App\Classes\CSRFToken::_token() }}">
                                                     <div>
-                                                        <input type="submit" class="button update-category" id="{{$category['id']}}"
-                                                        data-token="{{ \App\Classes\CSRFToken::_token() }}"
-                                                        value="Update">
+                                                        <input type="submit" class="button update-category" id="{{$category['id']}}" value="Update">
                                                     </div>
                                                 </div>
                                             </form>
-                                            <button class="close-button" data-close aria-label="Close modal" type="button">
+                                            <a class="close-button" data-close aria-label="Close modal" type="button">
                                               <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </a>
                                           </div>
                                     </td>
                                 </tr>

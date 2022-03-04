@@ -1,8 +1,8 @@
 (function () {
-    'use string';
+    'use strict';
 
     window.ACMESTORE = {
-        global: {},
-        admin: {}
-    }
+      global: {},
+      admin: {}
+    };
 })();
