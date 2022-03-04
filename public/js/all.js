@@ -2156,6 +2156,37 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/assets/js/acme.js":
+/*!*************************************!*\
+  !*** ./resources/assets/js/acme.js ***!
+  \*************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  window.ACMESTORE = {
+    global: {},
+    admin: {}
+  };
+})();
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/update.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/admin/update.js ***!
+  \*********************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  ACMESTORE.admin.update = function () {};
+})();
+
+/***/ }),
+
 /***/ "./resources/assets/js/app.js":
 /*!************************************!*\
   !*** ./resources/assets/js/app.js ***!
@@ -2171,24 +2202,23 @@ __webpack_require__(/*! foundation-sites/dist/js/foundation.min.js */ "./node_mo
 
 __webpack_require__(/*! slick-carousel/slick/slick.min.js */ "./node_modules/slick-carousel/slick/slick.min.js");
 
-__webpack_require__(/*! chart.js/dist/chart.min.js */ "./node_modules/chart.js/dist/chart.min.js");
-/** /
-//custom js files
-require('../../assets/js/acme');
-require('../../assets/js/admin/create');
-require('../../assets/js/admin/dashboard');
-require('../../assets/js/admin/delete');
-require('../../assets/js/admin/events');
-require('../../assets/js/admin/update');
-require('../../assets/js/pages/cart');
-require('../../assets/js/pages/home_products');
-require('../../assets/js/pages/lib');
-require('../../assets/js/pages/product_details');
-require('../../assets/js/pages/slider');
-/**/
+__webpack_require__(/*! chart.js/dist/chart.min.js */ "./node_modules/chart.js/dist/chart.min.js"); // ----------- custom js files --------------------------- //
 
 
-__webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js");
+__webpack_require__(/*! ../../assets/js/acme.js */ "./resources/assets/js/acme.js"); //require('../../assets/js/admin/create');
+//require('../../assets/js/admin/dashboard');
+//require('../../assets/js/admin/delete');
+//require('../../assets/js/admin/events');
+
+
+__webpack_require__(/*! ../../assets/js/admin/update.js */ "./resources/assets/js/admin/update.js"); //require('../../assets/js/pages/cart');
+//require('../../assets/js/pages/home_products');
+//require('../../assets/js/pages/lib');
+//require('../../assets/js/pages/product_details');
+//require('../../assets/js/pages/slider');
+
+
+__webpack_require__(/*! ../../assets/js/init.js */ "./resources/assets/js/init.js");
 
 /***/ }),
 
@@ -2202,6 +2232,21 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
   'use strict';
 
   $(document).foundation();
+  $(document).jQuery(function () {
+    // Switch Pages
+    switch ($("body").data("page-id")) {
+      case 'home':
+        break;
+
+      case 'adminCategories':
+        ACMESTORE.admin.update(); //ACMESTORE.admin.delete();
+
+        break;
+
+      default: // do nothing
+
+    }
+  });
 })();
 
 /***/ }),

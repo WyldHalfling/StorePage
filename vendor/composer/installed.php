@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'a870e17d626df363718b168a988e2c223ba70166',
+        'reference' => '3370ca2a02bfb97f169a26a72789019cae2c0fc7',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'a870e17d626df363718b168a988e2c223ba70166',
+            'reference' => '3370ca2a02bfb97f169a26a72789019cae2c0fc7',
             'dev_requirement' => false,
         ),
         'altorouter/altorouter' => array(
@@ -44,7 +44,7 @@
             'install_path' => __DIR__ . '/../filp/whoops',
             'aliases' => array(),
             'reference' => 'a63e5e8f26ebbebf8ed3c5c691637325512eb0dc',
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'graham-campbell/result-type' => array(
             'pretty_version' => 'v1.0.4',
@@ -164,12 +164,12 @@
             'dev_requirement' => false,
         ),
         'nesbot/carbon' => array(
-            'pretty_version' => '2.56.0',
-            'version' => '2.56.0.0',
+            'pretty_version' => '2.57.0',
+            'version' => '2.57.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(),
-            'reference' => '626ec8cbb724cd3c3400c3ed8f730545b744e3f4',
+            'reference' => '4a54375c21eea4811dbd1149fe6b246517554e78',
             'dev_requirement' => false,
         ),
         'phpmailer/phpmailer' => array(
@@ -212,7 +212,7 @@
             'install_path' => __DIR__ . '/../psr/log',
             'aliases' => array(),
             'reference' => 'ef29f6d262798707a9edd554e2b82517ef3a9376',
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'psr/log-implementation' => array(
             'dev_requirement' => false,
@@ -359,6 +359,15 @@
             'install_path' => __DIR__ . '/../vlucas/phpdotenv',
             'aliases' => array(),
             'reference' => '264dce589e7ce37a7ba99cb901eed8249fbec92f',
+            'dev_requirement' => false,
+        ),
+        'voku/pagination' => array(
+            'pretty_version' => '4.0.0',
+            'version' => '4.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../voku/pagination',
+            'aliases' => array(),
+            'reference' => 'e80c49a5744b608eb7f9c559a40e812f6e873fdb',
             'dev_requirement' => false,
         ),
         'voku/portable-ascii' => array(

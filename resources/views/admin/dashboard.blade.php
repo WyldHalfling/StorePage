@@ -5,8 +5,13 @@
 
 @section('content')
     <div class="dashbaord">
-        <div class="grid-x expanded">
+        <div class="row expanded">
             <h2>Dashboard</h2>
+            <form action="/admin" method="post" enctype="multipart/form-data">
+                <input name="product" value="testing">
+                <input type="file" name="image">
+                <input type="submit" value="Go" name="submit">
+            </form>
         </div>
     </div>
 @endsection

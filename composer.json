@@ -12,7 +12,9 @@
         "altorouter/altorouter": "^2.0",
         "jenssegers/blade": "^1.4",
         "illuminate/database": "^8.83",
-        "phpmailer/phpmailer": "^6.5"
+        "phpmailer/phpmailer": "^6.5",
+        "voku/pagination": "^4.0",
+        "nesbot/carbon": "^2.57"
     },
     "require-dev": {
         "filp/whoops": "^2.14"
