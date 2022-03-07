@@ -2182,7 +2182,37 @@ module.exports = {
 (function () {
   'use strict';
 
-  ACMESTORE.admin.update = function () {};
+  ACMESTORE.admin.update = function () {
+    //update product category
+    $(".update-category").on('click', function (e) {
+      var token = $(this).data('token');
+      var id = $(this).attr('id');
+      var name = $("#item-name-" + id).val();
+      $.ajax({
+        type: 'POST',
+        url: '/admin/product/categories/' + id + '/edit',
+        date: {
+          token: token,
+          name: name
+        },
+        success: function success(data) {
+          var response = jQuery.JSON.parse(data);
+          $(".notification").css("display", 'block').delay(4000).slideUp(300).html(response.success);
+        },
+        error: function error(request, _error) {
+          var errors = jQuery.JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').delay(6000).slideUp(300).html(ul);
+        }
+      });
+      e.preventDefault();
+    });
+  };
 })();
 
 /***/ }),
@@ -2232,7 +2262,7 @@ __webpack_require__(/*! ../../assets/js/init.js */ "./resources/assets/js/init.j
   'use strict';
 
   $(document).foundation();
-  $(document).jQuery(function () {
+  $(function () {
     // Switch Pages
     switch ($("body").data("page-id")) {
       case 'home':
@@ -2247,6 +2277,21 @@ __webpack_require__(/*! ../../assets/js/init.js */ "./resources/assets/js/init.j
 
     }
   });
+  /** /
+  $(document).ready(function () {
+        // Switch Pages
+      switch ($("body").data("page-id")) {
+          case 'home': 
+              break;
+          case 'adminCategories':
+              ACMESTORE.admin.update();
+              //ACMESTORE.admin.delete();
+              break;
+          default:
+              // do nothing
+      }
+  });
+  /**/
 })();
 
 /***/ }),

@@ -3,7 +3,7 @@
 
     $(document).foundation();
 
-    $(document).jQuery(function () {
+    $(function () {
 
         // Switch Pages
         switch ($("body").data("page-id")) {
@@ -17,5 +17,21 @@
                 // do nothing
         }
     });
+    /** /
+    $(document).ready(function () {
+
+        // Switch Pages
+        switch ($("body").data("page-id")) {
+            case 'home': 
+                break;
+            case 'adminCategories':
+                ACMESTORE.admin.update();
+                //ACMESTORE.admin.delete();
+                break;
+            default:
+                // do nothing
+        }
+    });
+    /**/
 
 })();
