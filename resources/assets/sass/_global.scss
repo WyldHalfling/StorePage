@@ -1,32 +1,31 @@
 
-.reveal{
+.reveal {
     border:0;
     border-radius: 0.5rem;
   
-    &:focus{
+    &:focus {
       outline-style: none;
     }
   
-    h2{
-      font-size: 1.5rem;
+    h2 {
+      font-size: 24px;
       font-weight: 500;
     }
   }
-  .notification{
-    margin-top: 1.5rem;
+  .notification {
     display: none;
   
-    ul{
-      li{
+    ul {
+      li {
         list-style-type: none;
       }
     }
   }
   
-  .fa-edit{
+  .fa-edit {
     color: #8a6d3b;
   }
   
-  .fa-times{
+  .fa-times {
     color:#ff0000;
   }

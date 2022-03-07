@@ -52,9 +52,10 @@
                                             <a data-open="item-<?php echo e($category['id']); ?>"><i class="fa fa-edit"></i></a>
                                             <a href="#"><i class="fa fa-times"></i></a>
                                         
-                                        <!-- Edit Categories -->
+                                        <!-- Edit Categories Model -->
                                         <div class="reveal" id="item-<?php echo e($category['id']); ?>"
                                              data-reveal data-close-on-click="false" data-close-on-esc="false">
+                                             <div class="notification"></div>
                                             <h2>Edit Category</h2>
                                             <form>
                                                 <div class="input-group">

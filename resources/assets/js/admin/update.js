@@ -12,13 +12,13 @@
             $.ajax({
                 type: 'POST',
                 url: '/admin/product/categories/' + id + '/edit',
-                date: {token: token, name: name},
+                data: {token:token, name:name},
                 success: function (data) {
-                    var response = jQuery.JSON.parse(data);
+                    var response = JSON.parse(data);
                     $(".notification").css("display", 'block').delay(4000).slideUp(300).html(response.success);
                 }, 
                 error: function (request, error) {
-                    var errors = jQuery.JSON.parse(request.responseText);
+                    var errors = JSON.parse(request.responseText);
                     var ul = document.createElement('ul');
                     $.each(errors, function (key, value) {
                         var li = document.createElement('li');
