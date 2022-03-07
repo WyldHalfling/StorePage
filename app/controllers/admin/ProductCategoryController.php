@@ -21,12 +21,22 @@ class ProductCategoryController extends BaseController {
         list($this->categories, $this->links) = paginate(10, $total, $this->tableName, $object);
     }
 
+    /**
+     * Display categories
+     *
+     * @return void
+     */
     public function show() {
         return view('admin/product/categories', [
             'categories' => $this->categories, 'links' => $this->links
         ]);
     }
 
+    /**
+     * Create new categories
+     *
+     * @return void
+     */
     public function store() {
         if (Request::has('post')) {
             $request = Request::get('post');
@@ -65,6 +75,12 @@ class ProductCategoryController extends BaseController {
         return null;
     }
     
+    /**
+     * Edit product categories
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function edit($id) {
         if (Request::has('post')) {
             $request = Request::get('post');

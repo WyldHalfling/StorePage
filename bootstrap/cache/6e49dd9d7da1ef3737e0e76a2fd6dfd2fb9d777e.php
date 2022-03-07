@@ -54,8 +54,9 @@
                                         
                                         <!-- Edit Categories Model -->
                                         <div class="reveal" id="item-<?php echo e($category['id']); ?>"
-                                             data-reveal data-close-on-click="false" data-close-on-esc="false">
-                                             <div class="notification"></div>
+                                             data-reveal data-close-on-click="false" data-close-on-esc="false"
+                                             data-animation-in="scale-in-up">
+                                             <div class="notification callout primary"></div>
                                             <h2>Edit Category</h2>
                                             <form>
                                                 <div class="input-group">
@@ -68,7 +69,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <a class="close-button" data-close aria-label="Close modal" type="button">
+                                            <a href="/admin/product/categories" class="close-button" aria-label="Close modal" type="button">
                                                 <span aria-hidden="true">&times;</span>
                                             </a>
                                         </div>

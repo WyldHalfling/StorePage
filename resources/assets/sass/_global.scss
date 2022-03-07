@@ -1,7 +1,7 @@
 
 .reveal {
     border:0;
-    border-radius: 0.5rem;
+    border-radius: 8px;
   
     &:focus {
       outline-style: none;
@@ -13,6 +13,7 @@
     }
   }
   .notification {
+    margin-top: 24px;
     display: none;
   
     ul {
@@ -23,9 +24,9 @@
   }
   
   .fa-edit {
-    color: #8a6d3b;
+    color: #8A6D3B;
   }
   
   .fa-times {
-    color:#ff0000;
+    color:#FF0000;
   }

@@ -2197,7 +2197,7 @@ module.exports = {
         },
         success: function success(data) {
           var response = JSON.parse(data);
-          $(".notification").css("display", 'block').delay(4000).slideUp(300).html(response.success);
+          $(".notification").css("display", 'block').removeClass('alert').addClass('primary').delay(4000).slideUp(300).html(response.success);
         },
         error: function error(request, _error) {
           var errors = JSON.parse(request.responseText);
@@ -2207,7 +2207,7 @@ module.exports = {
             li.appendChild(document.createTextNode(value));
             ul.appendChild(li);
           });
-          $(".notification").css("display", 'block').delay(6000).slideUp(300).html(ul);
+          $(".notification").css("display", 'block').removeClass('primary').addClass('alert').delay(6000).slideUp(300).html(ul);
         }
       });
       e.preventDefault();
