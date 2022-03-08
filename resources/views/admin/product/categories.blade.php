@@ -49,8 +49,16 @@
                                     <td>{{ $category['slug'] }}</td>
                                     <td>{{ $category['added'] }}</td>
                                     <td width="100" class="text-right">
-                                            <a data-open="item-{{$category['id']}}"><i class="fa fa-edit"></i></a>
-                                            <a href="#"><i class="fa fa-times"></i></a>
+                                            <span>
+                                                <a data-open="item-{{$category['id']}}"><i class="fa fa-edit"></i></a>
+                                            </span>
+                                            <span style="display: inline-block">
+                                                <form method="POST" action="/admin/product/categories/{{$category['id']}}/delete" 
+                                                  class="delete-item">
+                                                    <input type="hidden" name="token" value="{{ \App\Classes\CSRFToken::_token() }}">
+                                                    <button type="submit"><i class="fa fa-times delete"></i></button>
+                                                </form>
+                                            </span>
                                         
                                         <!-- Edit Categories Model -->
                                         <div class="reveal" id="item-{{$category['id']}}"
@@ -86,4 +94,6 @@
             </div>
         </div>
     </div>
+
+    @include('includes.delete-model')
 @endsection

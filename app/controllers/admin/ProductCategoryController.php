@@ -3,7 +3,9 @@
 namespace App\Controllers\Admin;
 
 use App\Classes\CSRFToken;
+use App\Classes\Redirect;
 use App\Classes\Request;
+use App\Classes\Session;
 use App\Classes\ValidateRequest;
 use App\Controllers\BaseController;
 use App\Models\Category;
@@ -101,6 +103,21 @@ class ProductCategoryController extends BaseController {
                 Category::where('id', $id)->update(['name' => $request->name]);
                 echo json_encode(['success' => 'Record Update Successfully']);
                 exit;
+            }
+            throw new \Exception('Token mismatch');
+        }
+        
+        return null;
+    }
+
+    public function delete($id) {
+        if (Request::has('post')) {
+            $request = Request::get('post');
+            
+            if (CSRFToken::verifyCSRFToken($request->token)) {
+                Category::destroy($id);
+                Session::add('success', 'Category Deleted');
+                Redirect::to('admin/product/categories');
             }
             throw new \Exception('Token mismatch');
         }

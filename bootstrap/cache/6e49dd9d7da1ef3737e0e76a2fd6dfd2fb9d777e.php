@@ -49,8 +49,16 @@
                                     <td><?php echo e($category['slug']); ?></td>
                                     <td><?php echo e($category['added']); ?></td>
                                     <td width="100" class="text-right">
-                                            <a data-open="item-<?php echo e($category['id']); ?>"><i class="fa fa-edit"></i></a>
-                                            <a href="#"><i class="fa fa-times"></i></a>
+                                            <span>
+                                                <a data-open="item-<?php echo e($category['id']); ?>"><i class="fa fa-edit"></i></a>
+                                            </span>
+                                            <span style="display: inline-block">
+                                                <form method="POST" action="/admin/product/categories/<?php echo e($category['id']); ?>/delete" 
+                                                  class="delete-item">
+                                                    <input type="hidden" name="token" value="<?php echo e(\App\Classes\CSRFToken::_token()); ?>">
+                                                    <button type="submit"><i class="fa fa-times delete"></i></button>
+                                                </form>
+                                            </span>
                                         
                                         <!-- Edit Categories Model -->
                                         <div class="reveal" id="item-<?php echo e($category['id']); ?>"
@@ -87,5 +95,7 @@
             </div>
         </div>
     </div>
+
+    <?php echo $__env->make('includes.delete-model', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.layout.base', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Phil\Desktop\StorePage\resources\views/admin/product/categories.blade.php ENDPATH**/ ?>
