@@ -2173,6 +2173,28 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/assets/js/admin/delete.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/admin/delete.js ***!
+  \*********************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  ACMESTORE.admin.delete = function () {
+    $('table[data-form="deleteForm"]').on('click', '.delete-item', function (e) {
+      e.preventDefault();
+      var form = $(this);
+      $('#confirm').foundation('open').on('click', '#delete-btn', function () {
+        form.trigger('submit'); // form.submit(); // depreciate
+      });
+    });
+  };
+});
+
+/***/ }),
+
 /***/ "./resources/assets/js/admin/update.js":
 /*!*********************************************!*\
   !*** ./resources/assets/js/admin/update.js ***!
@@ -2182,7 +2204,37 @@ module.exports = {
 (function () {
   'use strict';
 
-  ACMESTORE.admin.update = function () {};
+  ACMESTORE.admin.update = function () {
+    //update product category
+    $(".update-category").on('click', function (e) {
+      var token = $(this).data('token');
+      var id = $(this).attr('id');
+      var name = $("#item-name-" + id).val();
+      $.ajax({
+        type: 'POST',
+        url: '/admin/product/categories/' + id + '/edit',
+        data: {
+          token: token,
+          name: name
+        },
+        success: function success(data) {
+          var response = JSON.parse(data);
+          $(".notification").css("display", 'block').removeClass('alert').addClass('primary').delay(4000).slideUp(300).html(response.success);
+        },
+        error: function error(request, _error) {
+          var errors = JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').removeClass('primary').addClass('alert').delay(6000).slideUp(300).html(ul);
+        }
+      });
+      e.preventDefault();
+    });
+  };
 })();
 
 /***/ }),
@@ -2197,28 +2249,29 @@ window.$ = window.JQuery = __webpack_require__(/*! jquery */ "./node_modules/jqu
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm.js");
 
-__webpack_require__(/*! foundation-sites/dist/js/foundation.min.js */ "./node_modules/foundation-sites/dist/js/foundation.min.js"); //other dependencies
+__webpack_require__(/*! foundation-sites/dist/js/foundation.min */ "./node_modules/foundation-sites/dist/js/foundation.min.js"); //other dependencies
 
 
-__webpack_require__(/*! slick-carousel/slick/slick.min.js */ "./node_modules/slick-carousel/slick/slick.min.js");
+__webpack_require__(/*! slick-carousel/slick/slick.min */ "./node_modules/slick-carousel/slick/slick.min.js");
 
-__webpack_require__(/*! chart.js/dist/chart.min.js */ "./node_modules/chart.js/dist/chart.min.js"); // ----------- custom js files --------------------------- //
+__webpack_require__(/*! chart.js/dist/chart.min */ "./node_modules/chart.js/dist/chart.min.js"); // ----------- custom js files --------------------------- //
 
 
-__webpack_require__(/*! ../../assets/js/acme.js */ "./resources/assets/js/acme.js"); //require('../../assets/js/admin/create');
+__webpack_require__(/*! ../../assets/js/acme */ "./resources/assets/js/acme.js"); //require('../../assets/js/admin/create');
 //require('../../assets/js/admin/dashboard');
-//require('../../assets/js/admin/delete');
-//require('../../assets/js/admin/events');
 
 
-__webpack_require__(/*! ../../assets/js/admin/update.js */ "./resources/assets/js/admin/update.js"); //require('../../assets/js/pages/cart');
+__webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/admin/delete.js"); //require('../../assets/js/admin/events');
+
+
+__webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/admin/update.js"); //require('../../assets/js/pages/cart');
 //require('../../assets/js/pages/home_products');
 //require('../../assets/js/pages/lib');
 //require('../../assets/js/pages/product_details');
 //require('../../assets/js/pages/slider');
 
 
-__webpack_require__(/*! ../../assets/js/init.js */ "./resources/assets/js/init.js");
+__webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js");
 
 /***/ }),
 
@@ -2232,15 +2285,15 @@ __webpack_require__(/*! ../../assets/js/init.js */ "./resources/assets/js/init.j
   'use strict';
 
   $(document).foundation();
-  $(document).jQuery(function () {
+  $(function () {
     // Switch Pages
     switch ($("body").data("page-id")) {
       case 'home':
         break;
 
       case 'adminCategories':
-        ACMESTORE.admin.update(); //ACMESTORE.admin.delete();
-
+        ACMESTORE.admin.update();
+        ACMESTORE.admin.delete();
         break;
 
       default: // do nothing

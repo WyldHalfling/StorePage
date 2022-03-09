@@ -3,7 +3,7 @@
 
     $(document).foundation();
 
-    $(document).jQuery(function () {
+    $(function () {
 
         // Switch Pages
         switch ($("body").data("page-id")) {
@@ -11,11 +11,10 @@
                 break;
             case 'adminCategories':
                 ACMESTORE.admin.update();
-                //ACMESTORE.admin.delete();
+                ACMESTORE.admin.delete();
                 break;
             default:
                 // do nothing
         }
     });
-
 })();

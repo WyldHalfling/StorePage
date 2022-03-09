@@ -6652,18 +6652,18 @@ html.is-reveal-open body {
 
 .reveal {
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 8px;
 }
 .reveal:focus {
   outline-style: none;
 }
 .reveal h2 {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 500;
 }
 
 .notification {
-  margin-top: 1.5rem;
+  margin-top: 24px;
   display: none;
 }
 .notification ul li {
@@ -6671,11 +6671,11 @@ html.is-reveal-open body {
 }
 
 .fa-edit {
-  color: #8a6d3b;
+  color: #8A6D3B;
 }
 
 .fa-times {
-  color: #ff0000;
+  color: #FF0000;
 }
 
 .nav {
