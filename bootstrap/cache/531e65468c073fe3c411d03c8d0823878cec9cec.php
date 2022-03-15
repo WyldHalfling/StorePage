@@ -1,4 +1,4 @@
-<div class="row expanded">
+<div class="row expanded columns">
     <?php if(isset($errors) && count((array)$errors)): ?>
         <div class="callout alert" data-closable>
             <?php $__currentLoopData = $errors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error_array): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -13,10 +13,15 @@
         </div>
     <?php endif; ?>
 
-    <?php if(isset($success) && count((array)$success)): ?>
+    <?php if((isset($success) && count((array)$success)) || (\App\Classes\Session::has('success'))): ?>
         <div class="callout success" data-closable>
-            <?php echo e($success); ?>
+            <?php if(isset($success)): ?>
+                <?php echo e($success); ?>
 
+            <?php elseif(\App\Classes\Session::has('success')): ?>
+                <?php echo e(\App\Classes\Session::flash('success')); ?>
+
+            <?php endif; ?>
             <button class="close-button" aria-label="Dismiss Message" type="button" data-close>
                 <span arial-hidden="true">&times;</span>
             </button>

@@ -117,7 +117,7 @@ class ProductCategoryController extends BaseController {
             if (CSRFToken::verifyCSRFToken($request->token)) {
                 Category::destroy($id);
                 Session::add('success', 'Category Deleted');
-                Redirect::to('admin/product/categories');
+                Redirect::to('/admin/product/categories');
             }
             throw new \Exception('Token mismatch');
         }

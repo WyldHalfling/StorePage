@@ -49,16 +49,20 @@
                                     <td><?php echo e($category['slug']); ?></td>
                                     <td><?php echo e($category['added']); ?></td>
                                     <td width="100" class="text-right">
-                                            <span>
-                                                <a data-open="item-<?php echo e($category['id']); ?>"><i class="fa fa-edit"></i></a>
-                                            </span>
-                                            <span style="display: inline-block">
-                                                <form method="POST" action="/admin/product/categories/<?php echo e($category['id']); ?>/delete" 
-                                                  class="delete-item">
-                                                    <input type="hidden" name="token" value="<?php echo e(\App\Classes\CSRFToken::_token()); ?>">
-                                                    <button type="submit"><i class="fa fa-times delete"></i></button>
-                                                </form>
-                                            </span>
+
+                                        <span data-tooltip tabindex="1" title="Add Subcategory">
+                                            <a data-open="add-subcategory-<?php echo e($category['id']); ?>"><i class="fa fa-plus"></i></a>
+                                        </span>
+                                        <span data-tooltip class="has-tip top" tabindex="1" title="Edit Category">
+                                            <a data-open="item-<?php echo e($category['id']); ?>"><i class="fa fa-edit"></i></a>
+                                        </span>
+                                        <span data-tooltip class="has-tip top" tabindex="1" title="Delete Category" style="display: inline-block">
+                                            <form method="POST" action="/admin/product/categories/<?php echo e($category['id']); ?>/delete" 
+                                                class="delete-item">
+                                                <input type="hidden" name="token" value="<?php echo e(\App\Classes\CSRFToken::_token()); ?>">
+                                                <button type="submit"><i class="fa fa-times delete"></i></button>
+                                            </form>
+                                        </span>
                                         
                                         <!-- Edit Categories Model -->
                                         <div class="reveal" id="item-<?php echo e($category['id']); ?>"
@@ -81,6 +85,31 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </a>
                                         </div>
+                                        <!-- End Edit Categories Model -->
+
+                                        <!-- Add Subcategories Model -->
+                                        <div class="reveal" id="add-subcategory-<?php echo e($category['id']); ?>"
+                                             data-reveal data-close-on-click="false" data-close-on-esc="false"
+                                             data-animation-in="scale-in-up">
+                                             <div class="notification callout primary"></div>
+                                            <h2>Add Subcategory</h2>
+                                            <form>
+                                                <div class="input-group">
+                                                    <input type="text" name="name" id="subcategory-name-<?php echo e($category['id']); ?>">
+                                                    
+                                                    <div>
+                                                        <input type="submit" class="button add-subcategory" id="<?php echo e($category['id']); ?>"
+                                                               data-token="<?php echo e(\App\Classes\CSRFToken::_token()); ?>"
+                                                               value="Create">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <a href="/admin/product/categories" class="close-button" aria-label="Close modal" type="button">
+                                                <span aria-hidden="true">&times;</span>
+                                            </a>
+                                        </div>
+                                        <!-- End Add Subcategories Model -->
+
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

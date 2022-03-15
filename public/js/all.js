@@ -2182,7 +2182,7 @@ module.exports = {
 (function () {
   'use strict';
 
-  ACMESTORE.admin.delete = function () {
+  ACMESTORE.admin["delete"] = function () {
     $('table[data-form="deleteForm"]').on('click', '.delete-item', function (e) {
       e.preventDefault();
       var form = $(this);
@@ -2191,7 +2191,7 @@ module.exports = {
       });
     });
   };
-});
+})();
 
 /***/ }),
 
@@ -2286,17 +2286,17 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
 
   $(document).foundation();
   $(function () {
-    // Switch Pages
+    //SWITCH PAGES
     switch ($("body").data("page-id")) {
       case 'home':
         break;
 
       case 'adminCategories':
         ACMESTORE.admin.update();
-        ACMESTORE.admin.delete();
+        ACMESTORE.admin["delete"]();
         break;
 
-      default: // do nothing
+      default: //do nothing
 
     }
   });
