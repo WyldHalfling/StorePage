@@ -124,5 +124,76 @@
         </div>
     </div>
 
+    <div class="subcategory">
+        <div class="grid-x grid-padding-x">
+            <h2>Subcategories</h2>
+        </div>
+        
+		<!-- List of categories -->
+        <div class="grid-x grid-padding-x">
+            <div class="small-12 medium-11 column">
+                @if(count($subcategories))
+                    <table class="hover" data-form="deleteForm">
+                        <tbody>
+                            @foreach($subcategories as $subcategory)
+                                <tr>
+                                    <td>{{ $subcategory['name'] }}</td>
+                                    <td>{{ $subcategory['slug'] }}</td>
+                                    <td>{{ $subcategory['added'] }}</td>
+                                    <td width="100" class="text-right">
+                                        <span data-tooltip class="has-tip top" tabindex="1" title="Edit Subcategory">
+                                            <a data-open="item-subcategory-{{$subcategory['id']}}"><i class="fa fa-edit"></i></a>
+                                        </span>
+                                        <span data-tooltip class="has-tip top" tabindex="1" title="Delete Subcategory" style="display: inline-block">
+                                            <form method="POST" action="/admin/product/subcategory/{{$subcategory['id']}}/delete" 
+                                                class="delete-item">
+                                                <input type="hidden" name="token" value="{{ \App\Classes\CSRFToken::_token() }}">
+                                                <button type="submit"><i class="fa fa-times delete"></i></button>
+                                            </form>
+                                        </span>
+                                        
+                                        <!-- Edit Subcategories Model -->
+                                        <div class="reveal" id="item-subcategory-{{$subcategory['id']}}"
+                                             data-reveal data-close-on-click="false" data-close-on-esc="false"
+                                             data-animation-in="scale-in-up">
+                                             <div class="notification callout primary"></div>
+                                            <h2>Edit Subcategory</h2>
+                                            <form>
+                                                <div class="input-group">
+                                                    <input type="text" name="name" id="item-subcategory-name-{{$subcategory['id']}}" 
+                                                        value="{{ $subcategory['name'] }}">
+                                                    
+
+                                                    <label>Change Category
+                                                        <select id="item-category-{{ $subcategory['category_id'] }}">
+                                                        
+                                                        </select>
+                                                    </label>
+                                                    
+                                                    <div>
+                                                        <input type="submit" class="button update-subcategory" id="{{$subcategory['id']}}"
+                                                            data-token="{{ \App\Classes\CSRFToken::_token() }}" value="Update">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <a href="/admin/product/categories" class="close-button" aria-label="Close modal" type="button">
+                                                <span aria-hidden="true">&times;</span>
+                                            </a>
+                                        </div>
+                                        <!-- End Edit Categories Model -->
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    
+                    {!! $subcategories_links !!}
+                @else
+                    <h3>You have not created any subcategories</h3>
+                @endif
+            </div>
+        </div>
+    </div>
+
     @include('includes.delete-model')
 @endsection

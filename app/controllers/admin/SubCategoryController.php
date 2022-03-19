@@ -11,34 +11,7 @@ use App\Controllers\BaseController;
 use App\Models\Category;
 use App\Models\SubCategory;
 
-class ProductCategoryController extends BaseController {
-
-    public $tableName = 'categories';
-    public $categories;
-    public $subcategories;
-    public $subcategories_links;
-    public $links;
-
-    public function __construct() {
-        $total = Category::all()->count();
-        $subTotal = SubCategory::all()->count();
-        $object = new Category;
-
-        list($this->categories, $this->links) = paginate(10, $total, $this->tableName, $object);
-        list($this->subcategories, $this->subcategories_links) = paginate(10, $subTotal, 'sub_categories', new SubCategory);
-    }
-
-    /**
-     * Display categories
-     *
-     * @return void
-     */
-    public function show() {
-        return view('admin/product/categories', [
-            'categories' => $this->categories, 'links' => $this->links,
-            'subcategories' => $this->subcategories, 'subcategories_links' => $this->subcategories_links
-        ]);
-    }
+class SubCategoryController extends BaseController {
 
     /**
      * Create new categories
@@ -48,42 +21,48 @@ class ProductCategoryController extends BaseController {
     public function store() {
         if (Request::has('post')) {
             $request = Request::get('post');
-
-            if (CSRFToken::verifyCSRFToken($request->token)) {
+            $extra_errors = [];
+            
+            if (CSRFToken::verifyCSRFToken($request->token, false)) {
                 $rules = [
-                    'name' => ['required' => true, 'minLength' => 3, 'string' => true, 'unique' => 'categories']
+                  'name' => ['required' => true, 'minLength' => 3, 'mixed' => true],
+                  'category_id' => ['required' => true]
                 ];
-
+                
                 $validate = new ValidateRequest;
                 $validate->abide($_POST, $rules);
-
-                if ($validate->hasError()) {
-                    $errors = $validate->getErrorMessages();
-                    return view('admin/product/categories', [
-                        'categories' => $this->categories, 'links' => $this->links, 'errors' => $errors,
-                        'subcategories' => $this->subcategories, 'subcategories_links' => $this->subcategories_links
-                    ]);
+                
+                $duplicate_subcategory = SubCategory::where('name', $request->name)
+                    ->where('category_id', $request->category_id)->exists();
+                
+                if ($duplicate_subcategory) {
+                    $extra_errors['name'] = array('Subcategory already exist.');
                 }
-
-                // process form data
-                Category::create([
+                
+                $category = Category::where('id', $request->category_id)->exists();
+                if (!$category) {
+                    $extra_errors['name'] = array('Invalid product category.');
+                }
+                
+                if ($validate->hasError() || $duplicate_subcategory || !$category) {
+                    $errors = $validate->getErrorMessages();
+                    count($extra_errors) ? $response = array_merge($errors, $extra_errors) : $response = $errors;
+                    header('HTTP/1.1 422 Unprocessable Entity', true, 422);
+                    echo json_encode($response);
+                    exit;
+                }
+                //process form data
+                SubCategory::create([
                     'name' => $request->name,
+                    'category_id' => $request->category_id,
                     'slug' => slug($request->name)
                 ]);
-
-                $total = Category::all()->count();
-                $subTotal = SubCategory::all()->count();
-                list($this->categories, $this->links) = paginate(10, $total, $this->tableName, new Category);
-                list($this->subcategories, $this->subcategories_links) = paginate(10, $subTotal, 'sub_categories', new SubCategory);
-
-                return view('admin/product/categories', [
-                    'categories' => $this->categories, 'links' => $this->links, 'success' => 'Category Created',
-                    'subcategories' => $this->subcategories, 'subcategories_links' => $this->subcategories_links
-                ]);
+                echo json_encode(['success' => 'Subcategory create successfully']);
+                exit;
             }
             throw new \Exception('Token mismatch');
         }
-
+        
         return null;
     }
     
