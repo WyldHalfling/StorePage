@@ -2173,6 +2173,51 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/assets/js/admin/create.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/admin/create.js ***!
+  \*********************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  ACMESTORE.admin.create = function () {
+    //create subcategory
+    $(".add-subcategory").on('click', function (e) {
+      var token = $(this).data('token');
+      var category_id = $(this).attr('id');
+      var name = $("#subcategory-name-" + category_id).val();
+      $.ajax({
+        type: 'POST',
+        url: '/admin/product/subcategory/create',
+        data: {
+          token: token,
+          name: name,
+          category_id: category_id
+        },
+        success: function success(data) {
+          var response = JSON.parse(data);
+          $(".notification").css("display", 'block').removeClass('alert').addClass('primary').delay(4000).slideUp(300).html(response.success);
+        },
+        error: function error(request, _error) {
+          var errors = JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').removeClass('primary').addClass('alert').delay(6000).slideUp(300).html(ul);
+        }
+      });
+      e.preventDefault();
+    });
+  };
+})();
+
+/***/ }),
+
 /***/ "./resources/assets/js/admin/delete.js":
 /*!*********************************************!*\
   !*** ./resources/assets/js/admin/delete.js ***!
@@ -2182,7 +2227,7 @@ module.exports = {
 (function () {
   'use strict';
 
-  ACMESTORE.admin.delete = function () {
+  ACMESTORE.admin["delete"] = function () {
     $('table[data-form="deleteForm"]').on('click', '.delete-item', function (e) {
       e.preventDefault();
       var form = $(this);
@@ -2191,7 +2236,7 @@ module.exports = {
       });
     });
   };
-});
+})();
 
 /***/ }),
 
@@ -2257,8 +2302,9 @@ __webpack_require__(/*! slick-carousel/slick/slick.min */ "./node_modules/slick-
 __webpack_require__(/*! chart.js/dist/chart.min */ "./node_modules/chart.js/dist/chart.min.js"); // ----------- custom js files --------------------------- //
 
 
-__webpack_require__(/*! ../../assets/js/acme */ "./resources/assets/js/acme.js"); //require('../../assets/js/admin/create');
-//require('../../assets/js/admin/dashboard');
+__webpack_require__(/*! ../../assets/js/acme */ "./resources/assets/js/acme.js");
+
+__webpack_require__(/*! ../../assets/js/admin/create */ "./resources/assets/js/admin/create.js"); //require('../../assets/js/admin/dashboard');
 
 
 __webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/admin/delete.js"); //require('../../assets/js/admin/events');
@@ -2286,17 +2332,18 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
 
   $(document).foundation();
   $(function () {
-    // Switch Pages
+    //SWITCH PAGES
     switch ($("body").data("page-id")) {
       case 'home':
         break;
 
       case 'adminCategories':
         ACMESTORE.admin.update();
-        ACMESTORE.admin.delete();
+        ACMESTORE.admin["delete"]();
+        ACMESTORE.admin.create();
         break;
 
-      default: // do nothing
+      default: //do nothing
 
     }
   });
