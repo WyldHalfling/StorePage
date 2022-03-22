@@ -71,7 +71,7 @@
                                              <div class="notification callout primary"></div>
                                             <h2>Edit Category</h2>
                                             <form>
-                                                <div class="input-group">
+                                                <div class="input-group" style="display:block;">
                                                     <input type="text" name="name" id="item-name-{{$category['id']}}" value="{{ $category['name'] }}">
                                                     
                                                     <div>
@@ -94,7 +94,7 @@
                                              <div class="notification callout primary"></div>
                                             <h2>Add Subcategory</h2>
                                             <form>
-                                                <div class="input-group">
+                                                <div class="input-group" style="display:block;">
                                                     <input type="text" name="name" id="subcategory-name-{{$category['id']}}">
                                                     
                                                     <div>
@@ -159,20 +159,28 @@
                                              <div class="notification callout primary"></div>
                                             <h2>Edit Subcategory</h2>
                                             <form>
-                                                <div class="input-group">
+                                                <div class="input-group" style="display:block;">
                                                     <input type="text" name="name" id="item-subcategory-name-{{$subcategory['id']}}" 
-                                                        value="{{ $subcategory['name'] }}">
-                                                    
+                                                        value="{{ $subcategory['name'] }}">                                                    
 
                                                     <label>Change Category
                                                         <select id="item-category-{{ $subcategory['category_id'] }}">
-                                                        
+                                                            @foreach(\App\Models\Category::all() as $category) 
+                                                                @if($category->id == $subcategory['category_id'])
+                                                                <option selected="selected" value="{{ $category->id }}">
+                                                                    {{ $category->name }}</option>
+                                                                @endif
+                                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </label>
                                                     
                                                     <div>
-                                                        <input type="submit" class="button update-subcategory" id="{{$subcategory['id']}}"
-                                                            data-token="{{ \App\Classes\CSRFToken::_token() }}" value="Update">
+                                                        <input type="submit" class="button update-subcategory" 
+                                                            id="{{$subcategory['id']}}"
+                                                            data-category-id="{{$subcategory['category_id']}}"
+                                                            data-token="{{ \App\Classes\CSRFToken::_token() }}" 
+                                                            value="Update">
                                                     </div>
                                                 </div>
                                             </form>
