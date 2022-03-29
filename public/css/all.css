@@ -6650,11 +6650,24 @@ html.is-reveal-open body {
   display: none;
 }
 
+table {
+  border-collapse: collapse;
+}
+table th, table tr, table td {
+  font-size: 12px;
+  padding: 4px;
+  border: 1px solid #C0C0C0;
+}
+
 h2 {
   font-size: 24px;
   margin-top: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 0;
   font-weight: 500;
+}
+
+hr {
+  margin: 0 0 16px 0;
 }
 
 .reveal {
