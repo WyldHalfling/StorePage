@@ -2240,6 +2240,43 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/assets/js/admin/events.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/admin/events.js ***!
+  \*********************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  ACMESTORE.admin.changeEvent = function () {
+    $('#product-category').on('change', function () {
+      var category_id = $('#product-category' + ' option:selected').val();
+      $('#product-subcategory').html('Select Subcategory');
+      $.ajax({
+        type: 'GET',
+        url: '/admin/category/' + category_id + '/selected',
+        data: {
+          category_id: category_id
+        },
+        success: function success(response) {
+          var subcategories = JSON.parse(response);
+
+          if (subcategories.length) {
+            $.each(subcategories, function (key, value) {
+              $('#product-subcategory').append('<option value="' + value.id + '">' + value.name + '</option>');
+            });
+          } else {
+            $('#product-subcategory').append('<option value="">No record found</option>');
+          }
+        }
+      });
+    });
+  };
+})();
+
+/***/ }),
+
 /***/ "./resources/assets/js/admin/update.js":
 /*!*********************************************!*\
   !*** ./resources/assets/js/admin/update.js ***!
@@ -2344,8 +2381,9 @@ __webpack_require__(/*! ../../assets/js/acme */ "./resources/assets/js/acme.js")
 __webpack_require__(/*! ../../assets/js/admin/create */ "./resources/assets/js/admin/create.js"); //require('../../assets/js/admin/dashboard');
 
 
-__webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/admin/delete.js"); //require('../../assets/js/admin/events');
+__webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/admin/delete.js");
 
+__webpack_require__(/*! ../../assets/js/admin/events */ "./resources/assets/js/admin/events.js");
 
 __webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/admin/update.js"); //require('../../assets/js/pages/cart');
 //require('../../assets/js/pages/home_products');
@@ -2372,6 +2410,10 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
     //SWITCH PAGES
     switch ($("body").data("page-id")) {
       case 'home':
+        break;
+
+      case 'adminProduct':
+        ACMESTORE.admin.changeEvent();
         break;
 
       case 'adminCategories':
