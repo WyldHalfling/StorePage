@@ -36,3 +36,6 @@ $router->map('GET', '/admin/product/create',
     
 $router->map('POST', '/admin/product/create',
     'App\Controllers\Admin\ProductController@store', 'create_product');
+
+$router->map('GET', '/admin/product',
+    'App\Controllers\Admin\ProductController@show', 'show_products');
