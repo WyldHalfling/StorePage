@@ -2240,6 +2240,43 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/assets/js/admin/events.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/admin/events.js ***!
+  \*********************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  ACMESTORE.admin.changeEvent = function () {
+    $('#product-category').on('change', function () {
+      var category_id = $('#product-category' + ' option:selected').val();
+      $('#product-subcategory').html('Select Subcategory');
+      $.ajax({
+        type: 'GET',
+        url: '/admin/category/' + category_id + '/selected',
+        data: {
+          category_id: category_id
+        },
+        success: function success(response) {
+          var subcategories = JSON.parse(response);
+
+          if (subcategories.length) {
+            $.each(subcategories, function (key, value) {
+              $('#product-subcategory').append('<option value="' + value.id + '">' + value.name + '</option>');
+            });
+          } else {
+            $('#product-subcategory').append('<option value="">No record found</option>');
+          }
+        }
+      });
+    });
+  };
+})();
+
+/***/ }),
+
 /***/ "./resources/assets/js/admin/update.js":
 /*!*********************************************!*\
   !*** ./resources/assets/js/admin/update.js ***!
@@ -2267,6 +2304,43 @@ module.exports = {
           $(".notification").css("display", 'block').removeClass('alert').addClass('primary').delay(4000).slideUp(300).html(response.success);
         },
         error: function error(request, _error) {
+          var errors = JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').removeClass('primary').addClass('alert').delay(6000).slideUp(300).html(ul);
+        }
+      });
+      e.preventDefault();
+    }); //update subcategory
+
+    $(".update-subcategory").on('click', function (e) {
+      var token = $(this).data('token');
+      var id = $(this).attr('id');
+      var category_id = $(this).data('category-id');
+      var name = $("#item-subcategory-name-" + id).val();
+      var selected_category_id = $('#item-category-' + category_id + ' option:selected').val();
+
+      if (category_id !== selected_category_id) {
+        category_id = selected_category_id;
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '/admin/product/subcategory/' + id + '/edit',
+        data: {
+          token: token,
+          name: name,
+          category_id: category_id
+        },
+        success: function success(data) {
+          var response = JSON.parse(data);
+          $(".notification").css("display", 'block').removeClass('alert').addClass('primary').delay(4000).slideUp(300).html(response.success);
+        },
+        error: function error(request, _error2) {
           var errors = JSON.parse(request.responseText);
           var ul = document.createElement('ul');
           $.each(errors, function (key, value) {
@@ -2307,8 +2381,9 @@ __webpack_require__(/*! ../../assets/js/acme */ "./resources/assets/js/acme.js")
 __webpack_require__(/*! ../../assets/js/admin/create */ "./resources/assets/js/admin/create.js"); //require('../../assets/js/admin/dashboard');
 
 
-__webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/admin/delete.js"); //require('../../assets/js/admin/events');
+__webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/admin/delete.js");
 
+__webpack_require__(/*! ../../assets/js/admin/events */ "./resources/assets/js/admin/events.js");
 
 __webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/admin/update.js"); //require('../../assets/js/pages/cart');
 //require('../../assets/js/pages/home_products');
@@ -2335,6 +2410,10 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
     //SWITCH PAGES
     switch ($("body").data("page-id")) {
       case 'home':
+        break;
+
+      case 'adminProduct':
+        ACMESTORE.admin.changeEvent();
         break;
 
       case 'adminCategories':

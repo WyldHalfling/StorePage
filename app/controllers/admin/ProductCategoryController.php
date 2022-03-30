@@ -126,6 +126,14 @@ class ProductCategoryController extends BaseController {
             
             if (CSRFToken::verifyCSRFToken($request->token)) {
                 Category::destroy($id);
+
+                $subcategories = SubCategory::where('category_id', $id)->get();
+                if (count($subcategories)) {
+                    foreach ($subcategories as $subcategory) {
+                        $subcategory->delete();
+                    }
+                }
+
                 Session::add('success', 'Category Deleted');
                 Redirect::to('/admin/product/categories');
             }

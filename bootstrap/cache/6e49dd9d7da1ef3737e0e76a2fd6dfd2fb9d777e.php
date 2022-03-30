@@ -5,7 +5,9 @@
 <?php $__env->startSection('content'); ?>
     <div class="category">
         <div class="grid-x grid-padding-x">
-            <h2>Product Categories</h2>
+            <div class="column medium-11">
+                <h2>Product Categories</h2> <hr>
+            </div>
         </div>
         
         <?php echo $__env->make('includes.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -41,14 +43,17 @@
         <div class="grid-x grid-padding-x">
             <div class="small-12 medium-11 column">
                 <?php if(count($categories)): ?>
-                    <table class="hover" data-form="deleteForm">
+                    <table class="hover unstriped" data-form="deleteForm">
+                        <thead>
+                            <tr><th>Name</th><th>Slug</th><th>Date Created</th><th width="50">Action</th></tr>
+                        </thead>
                         <tbody>
                             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td><?php echo e($category['name']); ?></td>
                                     <td><?php echo e($category['slug']); ?></td>
                                     <td><?php echo e($category['added']); ?></td>
-                                    <td width="100" class="text-right">
+                                    <td width="50" class="text-right">
 
                                         <span data-tooltip tabindex="1" title="Add Subcategory">
                                             <a data-open="add-subcategory-<?php echo e($category['id']); ?>"><i class="fa fa-plus"></i></a>
@@ -71,7 +76,7 @@
                                              <div class="notification callout primary"></div>
                                             <h2>Edit Category</h2>
                                             <form>
-                                                <div class="input-group">
+                                                <div class="input-group" style="display:block;">
                                                     <input type="text" name="name" id="item-name-<?php echo e($category['id']); ?>" value="<?php echo e($category['name']); ?>">
                                                     
                                                     <div>
@@ -94,7 +99,7 @@
                                              <div class="notification callout primary"></div>
                                             <h2>Add Subcategory</h2>
                                             <form>
-                                                <div class="input-group">
+                                                <div class="input-group" style="display:block;">
                                                     <input type="text" name="name" id="subcategory-name-<?php echo e($category['id']); ?>">
                                                     
                                                     <div>
@@ -119,7 +124,7 @@
                     <?php echo $links; ?>
 
                 <?php else: ?>
-                    <h3>You have not created any category</h3>
+                    <h2>You have not created any category</h2>
                 <?php endif; ?>
             </div>
         </div>
@@ -127,21 +132,26 @@
 
     <div class="subcategory">
         <div class="grid-x grid-padding-x">
-            <h2>Subcategories</h2>
+            <div class="column medium-11">
+                <h2>Subcategories</h2> <hr>
+            </div>
         </div>
         
 		<!-- List of categories -->
         <div class="grid-x grid-padding-x">
             <div class="small-12 medium-11 column">
                 <?php if(count($subcategories)): ?>
-                    <table class="hover" data-form="deleteForm">
+                    <table class="hover unstriped" data-form="deleteForm">
+                        <thead>
+                            <tr><th>Name</th><th>Slug</th><th>Date Created</th><th width="50">Action</th></tr>
+                        </thead>
                         <tbody>
                             <?php $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td><?php echo e($subcategory['name']); ?></td>
                                     <td><?php echo e($subcategory['slug']); ?></td>
                                     <td><?php echo e($subcategory['added']); ?></td>
-                                    <td width="100" class="text-right">
+                                    <td width="50" class="text-right">
                                         <span data-tooltip class="has-tip top" tabindex="1" title="Edit Subcategory">
                                             <a data-open="item-subcategory-<?php echo e($subcategory['id']); ?>"><i class="fa fa-edit"></i></a>
                                         </span>
@@ -160,13 +170,28 @@
                                              <div class="notification callout primary"></div>
                                             <h2>Edit Subcategory</h2>
                                             <form>
-                                                <div class="input-group">
+                                                <div class="input-group" style="display:block;">
                                                     <input type="text" name="name" id="item-subcategory-name-<?php echo e($subcategory['id']); ?>" 
-                                                        value="<?php echo e($subcategory['name']); ?>">
+                                                        value="<?php echo e($subcategory['name']); ?>">                                                    
+
+                                                    <label>Change Category
+                                                        <select id="item-category-<?php echo e($subcategory['category_id']); ?>">
+                                                            <?php $__currentLoopData = \App\Models\Category::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                                                                <?php if($category->id == $subcategory['category_id']): ?>
+                                                                <option selected="selected" value="<?php echo e($category->id); ?>">
+                                                                    <?php echo e($category->name); ?></option>
+                                                                <?php endif; ?>
+                                                                <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </select>
+                                                    </label>
                                                     
                                                     <div>
-                                                        <input type="submit" class="button update-subcategory" id="<?php echo e($subcategory['id']); ?>"
-                                                            data-token="<?php echo e(\App\Classes\CSRFToken::_token()); ?>" value="Update">
+                                                        <input type="submit" class="button update-subcategory" 
+                                                            id="<?php echo e($subcategory['id']); ?>"
+                                                            data-category-id="<?php echo e($subcategory['category_id']); ?>"
+                                                            data-token="<?php echo e(\App\Classes\CSRFToken::_token()); ?>" 
+                                                            value="Update">
                                                     </div>
                                                 </div>
                                             </form>
@@ -184,7 +209,7 @@
                     <?php echo $subcategories_links; ?>
 
                 <?php else: ?>
-                    <h3>You have not created any subcategories</h3>
+                    <h2>You have not created any subcategories</h2>
                 <?php endif; ?>
             </div>
         </div>
