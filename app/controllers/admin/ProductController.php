@@ -28,6 +28,9 @@ class ProductController extends BaseController
     }
     
     public function show() {
+        $product = Product::where('id', 1)->with(['category', 'subCategory'])->first();
+        var_dump($product);
+        exit;
         $products = $this->products;
         $links = $this->links;
         return view('admin/product/inventory', compact('products', 'links'));
