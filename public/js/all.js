@@ -2414,6 +2414,7 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
 
       case 'adminProduct':
         ACMESTORE.admin.changeEvent();
+        ACMESTORE.admin["delete"]();
         break;
 
       case 'adminCategories':
