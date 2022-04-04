@@ -1,4 +1,22 @@
 
+$background: #F2F2F2;
+$heading-large: 40px;
+$heading-medium: 32px;
+$heading-small: 28px;
+$text-size: 16px;
+
+html, body {
+  font-size: $text-size;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.site_wrapper {
+  min-height: 100%;
+  position: relative;
+}
 table {
   border-collapse: collapse;
 
