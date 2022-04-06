@@ -2167,7 +2167,8 @@ module.exports = {
 
   window.ACMESTORE = {
     global: {},
-    admin: {}
+    admin: {},
+    homeslider: {}
   };
 })();
 
@@ -2389,8 +2390,9 @@ __webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/a
 //require('../../assets/js/pages/home_products');
 //require('../../assets/js/pages/lib');
 //require('../../assets/js/pages/product_details');
-//require('../../assets/js/pages/slider');
 
+
+__webpack_require__(/*! ../../assets/js/pages/slider */ "./resources/assets/js/pages/slider.js");
 
 __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js");
 
@@ -2410,6 +2412,7 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
     //SWITCH PAGES
     switch ($("body").data("page-id")) {
       case 'home':
+        ACMESTORE.homeslider.initCarousel();
         break;
 
       case 'adminProduct':
@@ -2427,6 +2430,30 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
 
     }
   });
+})();
+
+/***/ }),
+
+/***/ "./resources/assets/js/pages/slider.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/pages/slider.js ***!
+  \*********************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  ACMESTORE.homeslider.initCarousel = function () {
+    $('.hero-slider').slick({
+      slidesToShow: 1,
+      autoplay: true,
+      arrows: false,
+      dots: false,
+      fade: true,
+      autoplayHoverPuase: true,
+      slidesToScroll: 1
+    });
+  };
 })();
 
 /***/ }),

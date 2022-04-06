@@ -6755,7 +6755,7 @@ hr {
   font-family: "Open Sans", sans-serif;
 }
 .navigation .logo {
-  background-image: url("/images/logo.png");
+  background-image: url("/images/logo2.png");
   width: 10rem;
   height: 2.6rem;
   display: block;
@@ -6832,6 +6832,14 @@ hr {
   .navigation .top-bar ul.menu.vertical {
     text-align: left;
   }
+}
+
+.home .hero {
+  width: 100%;
+  box-sizing: border-box;
+}
+.home .hero .hero-slider img {
+  width: 100% !important;
 }
 
 .slide-in-down.mui-enter {
