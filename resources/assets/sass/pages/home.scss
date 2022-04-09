@@ -1,5 +1,11 @@
 .home {
 
+    padding-top: 4.6rem;
+
+    @include breakpoint(small only) {
+        padding-top: 2.8rem;
+    }
+
     .hero {
         width: 100%;
         box-sizing: border-box;
