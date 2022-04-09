@@ -1,15 +1,50 @@
 
+$background: #F2F2F2;
+$heading-large: 40px;
+$heading-medium: 32px;
+$heading-small: 28px;
+$text-size: 16px;
+
+html, body {
+  font-size: $text-size;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.site_wrapper {
+  min-height: 100%;
+  position: relative;
+}
+table {
+  border-collapse: collapse;
+
+  th, tr, td {
+    font-size:  12px;
+    padding: 4px;
+    border: 1px solid #C0C0C0;
+  }
+}
+
+
+h2 {
+  font-size: 24px;
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+hr {
+  margin: 0 0 16px 0;
+}
+
 .reveal {
     border:0;
     border-radius: 8px;
   
     &:focus {
       outline-style: none;
-    }
-  
-    h2 {
-      font-size: 24px;
-      font-weight: 500;
     }
   }
   .notification {

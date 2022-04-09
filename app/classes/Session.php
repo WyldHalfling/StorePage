@@ -56,4 +56,24 @@ class Session {
             unset($_SESSION[$name]);
         }
     }
+
+    /**
+     * Flash a message and unset old session
+     *
+     * @param $name
+     * @param $value
+     * @return void
+     */
+    public static function flash($name, $value = '') {
+        if (self::has($name)) {
+            $oldValue = self::get($name);
+            self::remove($name);
+
+            return $oldValue;
+        } else {
+            self::add($name, $value);
+        }
+
+        return null;
+    }
 }

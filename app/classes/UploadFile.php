@@ -82,7 +82,7 @@ class UploadFile {
      * @param $newFilename
      * @return null/static
      */
-    public static function move($tempPath, $folder, $file, $newFilename) {
+    public static function move($tempPath, $folder, $file, $newFilename = '') {
         $fileObj = new static;
         $ds = DIRECTORY_SEPARATOR;
 
