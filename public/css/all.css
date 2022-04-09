@@ -6834,6 +6834,14 @@ hr {
   }
 }
 
+.home {
+  padding-top: 4.6rem;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .home {
+    padding-top: 2.8rem;
+  }
+}
 .home .hero {
   width: 100%;
   box-sizing: border-box;
