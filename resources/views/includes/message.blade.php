@@ -1,4 +1,4 @@
-<div class="row expanded columns">
+<div class="row expanded cell">
     @if(isset($errors) && count((array)$errors))
         <div class="callout alert" data-closable>
             @foreach($errors as $error_array)

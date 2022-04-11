@@ -11,6 +11,20 @@
                 <div> <img src="/images/sliders/slide_3.jpg" alt="PK E-Store"> </div>
             </div>
         </section>
+
+        <section>
+            <div id="root">
+                {{ message }}
+            </div>
+        </section>
     </div>
+    <script>
+        new Vue({
+            el:'#root',
+            data: {
+                message: 'This is short intro to VueJS.'
+            }
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Phil\Desktop\StorePage\resources\views/home.blade.php ENDPATH**/ ?>

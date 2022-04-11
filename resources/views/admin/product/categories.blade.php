@@ -5,7 +5,7 @@
 @section('content')
     <div class="category">
         <div class="grid-x grid-padding-x">
-            <div class="column medium-11">
+            <div class="cell medium-11">
                 <h2>Product Categories</h2> <hr>
             </div>
         </div>
@@ -14,7 +14,7 @@
         
 		<!-- Search bar -->
         <div class="grid-x grid-padding-x">
-            <div class="small-12 medium-6 column">
+            <div class="small-12 medium-6 cell">
                 <form action="" method="post">
                     <div class="input-group">
                         <input type="text" class="input-group-field" placeholder="Search by name">
@@ -26,7 +26,7 @@
             </div>
 			
 			<!-- Create bar -->
-            <div class="small-12 medium-5 end column">
+            <div class="small-12 medium-5 end cell">
                 <form action="/admin/product/categories" method="post">
                     <div class="input-group">
                         <input type="text" class="input-group-field" name="name" placeholder="Category Name">
@@ -41,7 +41,7 @@
         
 		<!-- List of categories -->
         <div class="grid-x grid-padding-x">
-            <div class="small-12 medium-11 column">
+            <div class="small-12 medium-11 cell">
                 @if(count($categories))
                     <table class="hover unstriped" data-form="deleteForm">
                         <thead>
@@ -131,14 +131,14 @@
 
     <div class="subcategory">
         <div class="grid-x grid-padding-x">
-            <div class="column medium-11">
+            <div class="cell medium-11">
                 <h2>Subcategories</h2> <hr>
             </div>
         </div>
         
 		<!-- List of categories -->
         <div class="grid-x grid-padding-x">
-            <div class="small-12 medium-11 column">
+            <div class="small-12 medium-11 cell">
                 @if(count($subcategories))
                     <table class="hover unstriped" data-form="deleteForm">
                         <thead>

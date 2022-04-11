@@ -1,7 +1,7 @@
 
 window.$ = window.JQuery = require('jquery');
 window.axios = require('axios');
-window.Vue = require('vue');
+//window.Vue = require('vue').default;
 
 require('foundation-sites/dist/js/foundation.min');
 
@@ -17,7 +17,7 @@ require('../../assets/js/admin/delete');
 require('../../assets/js/admin/events');
 require('../../assets/js/admin/update');
 //require('../../assets/js/pages/cart');
-//require('../../assets/js/pages/home_products');
+require('../../assets/js/pages/home_products');
 //require('../../assets/js/pages/lib');
 //require('../../assets/js/pages/product_details');
 require('../../assets/js/pages/slider');

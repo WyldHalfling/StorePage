@@ -1,4 +1,4 @@
-<div class="row expanded columns">
+<div class="row expanded cell">
     <?php if(isset($errors) && count((array)$errors)): ?>
         <div class="callout alert" data-closable>
             <?php $__currentLoopData = $errors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error_array): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
