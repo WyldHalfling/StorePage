@@ -28,12 +28,12 @@ I am working through the admin/management parts of the the MVC framework.
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![Contributors][contributors-shield]][https://github.com/WyldHalfling/StorePage/graphs/contributors]
+[![Forks][forks-shield]][https://github.com/WyldHalfling/StorePage/network/members]
+[![Stargazers][stars-shield]][https://github.com/WyldHalfling/StorePage/stargazers]
+[![Issues][issues-shield]][https://github.com/WyldHalfling/StorePage/issues]
+[![MIT License][license-shield]][https://github.com/WyldHalfling/StorePage/blob/master/license.txt]
+[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/phil-konsor-553ba2202/]
 
 
 
