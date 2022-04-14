@@ -12,18 +12,30 @@
             </div>
         </section>
 
-        <section>
-            <div id="root">
-                @{{ message }}
+        <section class="display-products" id="root">
+            <h2>Featured Products</h2>
+            <div class="grid-x grid-padding-x medium-up-2 large-up-4">
+                <div class="cell small-12" v-for="feature in featured">
+                    <a :href="'/product' + feature.id">
+                        <div class="card" data-equalizer-watch>
+                            <div class="card-section">
+                                <img :src="'/' + feature.image_path" width="100%" height="200">
+                            </div>
+                            <div class="card-section">
+                                <p>
+                                    @{{ stringLimit(feature.name, 18) }}
+                                </p>
+                                <a :href="'/product' + feature.id" class="button more expanded">
+                                    See More
+                                </a>
+                                <a :href="'/product' + feature.id" class="button cart expanded">
+                                    $@{{ feature.price }} - Add to cart
+                                </a>
+                            </div>
+                          </div>
+                    </a>
+                </div>
             </div>
         </section>
     </div>
-    <script>
-        new Vue({
-            el:'#root',
-            data: {
-                message: 'This is short intro to VueJS.'
-            }
-        });
-    </script>
 @stop

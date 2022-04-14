@@ -90,7 +90,7 @@
     </form>
 
     <!-- Delete Button -->
-    <div class="row expanded">
+    <div class="grid-x grid-padding-x expanded">
         <div class="small-12 medium-11 cell">
             <table data-form="deleteForm">
                 <tr style="border: 1px solid white">

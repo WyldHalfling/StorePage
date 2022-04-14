@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="products">
-    <div class="row expanded">
+    <div class="grid-x grid-padding-x expanded">
         <div class="cell medium-11">
             <h2>Manage Inventory Items</h2> <hr />
         </div>
@@ -12,7 +12,7 @@
     
     @include('includes.message')
     
-    <div class="row expanded">
+    <div class="grid-x grid-padding-x expanded">
         <div class="small-12 medium-11 cell">
             <a href="/admin/product/create" class="button float-right">
                 <i class="fa fa-plus"></i> Add New Product
@@ -20,7 +20,7 @@
         </div>
     </div>
         
-    <div class="row expanded">
+    <div class="grid-x grid-padding-x expanded">
         <div class="small-12 medium-11 cell">
             @if(count($products))
                 <table class="hover unstriped" data-form="deleteForm">

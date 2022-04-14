@@ -6849,6 +6849,51 @@ hr {
 .home .hero .hero-slider img {
   width: 100% !important;
 }
+.home .display-products {
+  padding: 2rem;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .home .display-products {
+    padding: 0.7rem;
+    text-align: center;
+  }
+}
+.home .display-products a {
+  color: #0A0A0A;
+}
+.home .display-products a:focus {
+  outline-style: none;
+}
+.home .display-products .card {
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+}
+.home .display-products .card .card-section {
+  margin-bottom: 0.7rem;
+}
+.home .display-products .card .card-section img {
+  border-radius: 0.5rem;
+  width: 200px !important;
+  height: 250px !important;
+}
+.home .display-products .card .card-section .button {
+  border-radius: 0.2rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.home .display-products .card .card-section .button.more {
+  color: #00D6B2;
+  background-color: #FFFFFF;
+  border: 1px solid #00D6B2;
+}
+.home .display-products .card .card-section .button.cart {
+  color: #FFFFFF;
+  background-color: #FF0000;
+  border: 1px solid #FF0000;
+}
+.home .display-products .card .card-section .button.cart:hover {
+  background-color: #e30000;
+}
 
 .slide-in-down.mui-enter {
   transition-duration: 500ms;

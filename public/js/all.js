@@ -2459,7 +2459,16 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           this.loading = true;
           axios.get('/featured').then(function (response) {
             console.log(response.data);
+            app.featured = response.data.featured;
+            app.loading = false;
           });
+        },
+        stringLimit: function stringLimit(string, value) {
+          if (string.length > value) {
+            return string.substring(0, value) + '...';
+          } else {
+            return string;
+          }
         }
       },
       created: function created() {
