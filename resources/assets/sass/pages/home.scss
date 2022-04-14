@@ -16,4 +16,54 @@
             }
         }
     }
+
+    .display-products {
+        padding: 2rem;
+        @include breakpoint(small only) {
+            padding: 0.7rem;
+            text-align: center;
+        }
+
+        a {
+            color: #0A0A0A;
+            &:focus {
+                outline-style: none;
+            }
+        }
+
+        .card {
+            padding: 0.9rem;
+            margin-bottom: 1rem;
+        
+            .card-section {
+                margin-bottom: 0.7rem;
+                
+                img {
+                    border-radius: 0.5rem;
+                    width: 200px !important;
+                    height: 250px !important; 
+                }
+
+                .button {
+                    border-radius: 0.2rem;
+                    cursor: pointer;
+                    font-size: 0.8rem;
+
+                    &.more {
+                        color: #00D6B2;
+                        background-color: #FFFFFF;
+                        border: 1px solid #00D6B2;
+                    }
+                    &.cart {
+                        color: #FFFFFF;
+                        background-color: #FF0000;
+                        border: 1px solid #FF0000;
+                        &:hover {
+                            background-color: lighten(#BF0000, 7%);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
