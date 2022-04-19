@@ -2453,6 +2453,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
       data: {
         featured: [],
         products: [],
+        count: 0,
         loading: false
       },
       methods: {
@@ -2461,6 +2462,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           axios.all([axios.get('/featured'), axios.get('/get-products')]).then(axios.spread(function (featuredResponse, productsResponse) {
             app.featured = featuredResponse.data.featured;
             app.products = productsResponse.data.products;
+            app.count = productsResponse.data.count;
             app.loading = false;
           }));
         },
@@ -2470,10 +2472,31 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           } else {
             return string;
           }
+        },
+        loadMoreProducts: function loadMoreProducts() {
+          var token = $('.display-products').data('token');
+          this.loading = true;
+          var data = $.param({
+            next: 2,
+            token: token,
+            count: app.count
+          });
+          axios.post('/load-more', data).then(function (response) {
+            app.products = response.data.products;
+            app.count = response.data.count;
+            app.loading = false;
+          });
         }
       },
       created: function created() {
         this.getFeaturedProducts();
+      },
+      mounted: function mounted() {
+        $(Window).on('scroll', function () {
+          if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+            app.loadMoreProducts();
+          }
+        });
       }
     });
   };
