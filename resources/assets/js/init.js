@@ -9,6 +9,10 @@
         switch ($("body").data("page-id")){
             case 'home':
                 ACMESTORE.homeslider.initCarousel();
+                ACMESTORE.homeslider.homePageProducts();
+                break;
+            case 'product': 
+                ACMESTORE.product.details();
                 break;
             case 'adminProduct' :
                 ACMESTORE.admin.changeEvent();

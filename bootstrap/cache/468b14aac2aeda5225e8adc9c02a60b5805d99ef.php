@@ -5,7 +5,7 @@
 
 <?php $__env->startSection('content'); ?>
     <div class="dashbaord">
-        <div class="row expanded">
+        <div class="grid-x grid-padding-x expanded">
             <h2>Dashboard</h2>
             <form action="/admin" method="post" enctype="multipart/form-data">
                 <input name="product" value="testing">

@@ -109,7 +109,7 @@ class ProductController extends BaseController
             $request = Request::get('post');
             $file_error = [];
             
-            if (CSRFToken::verifyCSRFToken($request->token)) {
+            if (CSRFToken::verifyCSRFToken($request->token, false)) {
                 $rules = [
                   'name' => ['required' => true, 'minLength' => 3,'maxLength' => 70, 'mixed' => true],
                   'price' => ['required' => true, 'minLength' => 2, 'number' => true],

@@ -6655,7 +6655,39 @@ html, body {
   line-height: 1.5;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Average Sans", sans-serif;
+}
+
+h2 {
+  font-family: "Fjalla One", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 1.6rem;
+  padding: 0 1rem 1rem 1rem;
+  font-weight: 500;
+}
+@media print, screen and (min-width: 40em) and (max-width: 63.99875em) {
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+@media print, screen and (min-width: 64em) and (max-width: 74.99875em) {
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+p {
+  font-family: "Average Sans", sans-serif;
+  font-size: 1.2rem;
+}
+@media print, screen and (min-width: 40em) and (max-width: 63.99875em) {
+  p {
+    font-size: 1rem;
+  }
+}
+
+[v-cloak] .v-cloak--hidden {
+  display: none;
 }
 
 .site_wrapper {
@@ -6834,12 +6866,91 @@ hr {
   }
 }
 
+.home {
+  padding-top: 4.6rem;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .home {
+    padding-top: 2.8rem;
+  }
+}
 .home .hero {
   width: 100%;
   box-sizing: border-box;
 }
 .home .hero .hero-slider img {
   width: 100% !important;
+}
+.home .display-products {
+  padding: 2rem;
+  text-align: center;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .home .display-products {
+    padding: 0.7rem;
+    text-align: center;
+  }
+}
+.home .display-products a {
+  color: #0A0A0A;
+}
+.home .display-products a:focus {
+  outline-style: none;
+}
+.home .display-products h2 {
+  text-align: left;
+}
+.home .display-products .card {
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+}
+.home .display-products .card .card-section {
+  margin-bottom: 0.7rem;
+}
+.home .display-products .card .card-section img {
+  border-radius: 0.5rem;
+  width: 200px !important;
+  height: 250px !important;
+}
+.home .display-products .card .card-section .button {
+  border-radius: 0.2rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.home .display-products .card .card-section .button.more {
+  color: #00D6B2;
+  background-color: #FFFFFF;
+  border: 1px solid #00D6B2;
+}
+.home .display-products .card .card-section .button.cart {
+  color: #FFFFFF;
+  background-color: #FF0000;
+  border: 1px solid #FF0000;
+}
+.home .display-products .card .card-section .button.cart:hover {
+  background-color: #e30000;
+}
+
+.product {
+  padding: 6rem;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .product {
+    text-align: center;
+    padding: 0.7rem;
+  }
+}
+.product p {
+  padding: 1rem;
+}
+.product .button {
+  border-radius: 0.2rem;
+  cursor: pointer;
+  border: 1px solid #FF0000;
+  margin-left: 1rem;
+}
+.product .button:hover {
+  background-color: #ff2424;
 }
 
 .slide-in-down.mui-enter {
