@@ -2168,7 +2168,8 @@ module.exports = {
   window.ACMESTORE = {
     global: {},
     admin: {},
-    homeslider: {}
+    homeslider: {},
+    product: {}
   };
 })();
 
@@ -2389,8 +2390,9 @@ __webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/a
 
 
 __webpack_require__(/*! ../../assets/js/pages/home_products */ "./resources/assets/js/pages/home_products.js"); //require('../../assets/js/pages/lib');
-//require('../../assets/js/pages/product_details');
 
+
+__webpack_require__(/*! ../../assets/js/pages/product_details */ "./resources/assets/js/pages/product_details.js");
 
 __webpack_require__(/*! ../../assets/js/pages/slider */ "./resources/assets/js/pages/slider.js");
 
@@ -2414,6 +2416,10 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
       case 'home':
         ACMESTORE.homeslider.initCarousel();
         ACMESTORE.homeslider.homePageProducts();
+        break;
+
+      case 'product':
+        ACMESTORE.product.details();
         break;
 
       case 'adminProduct':
@@ -2497,6 +2503,59 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
             app.loadMoreProducts();
           }
         });
+      }
+    });
+  };
+})();
+
+/***/ }),
+
+/***/ "./resources/assets/js/pages/product_details.js":
+/*!******************************************************!*\
+  !*** ./resources/assets/js/pages/product_details.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
+(function () {
+  'use strict';
+
+  ACMESTORE.product.details = function () {
+    var app = new Vue({
+      el: '#product',
+      data: {
+        product: [],
+        category: [],
+        subCategory: [],
+        similarProducts: [],
+        productId: $('#product').data('id'),
+        loading: false
+      },
+      methods: {
+        getProductDetails: function getProductDetails() {
+          this.loading = true;
+          setTimeout(function () {
+            axios.get('/product-details/' + app.productId).then(function (response) {
+              app.product = response.data.product;
+              app.category = response.data.category;
+              app.subCategory = response.data.subCategory;
+              app.similarProducts = response.data.similarProducts;
+              app.loading = false;
+            });
+          }, 1000);
+        },
+        stringLimit: function stringLimit(string, value) {
+          if (string.length > value) {
+            return string.substring(0, value) + '...';
+          } else {
+            return string;
+          }
+        }
+      },
+      created: function created() {
+        this.getProductDetails();
       }
     });
   };
