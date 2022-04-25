@@ -2,8 +2,7 @@
 
 namespace App\Classes;
 
-class CSRFToken
-{
+class CSRFToken {
     /**
      * Generate Token
      * @return mixed
