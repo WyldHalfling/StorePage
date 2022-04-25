@@ -2389,8 +2389,9 @@ __webpack_require__(/*! ../../assets/js/admin/events */ "./resources/assets/js/a
 __webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/admin/update.js"); //require('../../assets/js/pages/cart');
 
 
-__webpack_require__(/*! ../../assets/js/pages/home_products */ "./resources/assets/js/pages/home_products.js"); //require('../../assets/js/pages/lib');
+__webpack_require__(/*! ../../assets/js/pages/home_products */ "./resources/assets/js/pages/home_products.js");
 
+__webpack_require__(/*! ../../assets/js/pages/lib */ "./resources/assets/js/pages/lib.js");
 
 __webpack_require__(/*! ../../assets/js/pages/product_details */ "./resources/assets/js/pages/product_details.js");
 
@@ -2473,11 +2474,11 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           }));
         },
         stringLimit: function stringLimit(string, value) {
-          if (string.length > value) {
-            return string.substring(0, value) + '...';
-          } else {
-            return string;
-          }
+          return ACMESTORE.module.truncateString(string, value);
+        },
+        addToCart: function addToCart(id) {
+          var message = ACMESTORE.module.addIteToCart(id);
+          alert(message);
         },
         loadMoreProducts: function loadMoreProducts() {
           var token = $('.display-products').data('token');
@@ -2505,6 +2506,31 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
         });
       }
     });
+  };
+})();
+
+/***/ }),
+
+/***/ "./resources/assets/js/pages/lib.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/pages/lib.js ***!
+  \******************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  ACMESTORE.module = {
+    truncateString: function limit(string, value) {
+      if (string.length > value) {
+        return string.substring(0, value) + '...';
+      } else {
+        return string;
+      }
+    },
+    addIteToCart: function addIteToCart(id) {
+      return id;
+    }
   };
 })();
 
@@ -2547,11 +2573,11 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           }, 1000);
         },
         stringLimit: function stringLimit(string, value) {
-          if (string.length > value) {
-            return string.substring(0, value) + '...';
-          } else {
-            return string;
-          }
+          return ACMESTORE.module.truncateString(string, value);
+        },
+        addToCart: function addToCart(id) {
+          var message = ACMESTORE.module.addIteToCart(id);
+          alert(message);
         }
       },
       created: function created() {
