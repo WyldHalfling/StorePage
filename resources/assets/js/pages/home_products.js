@@ -30,8 +30,10 @@ const { default: axios } = require("axios");
                     return ACMESTORE.module.truncateString(string, value);
                 },
                 addToCart: function (id) {
-                    var message = ACMESTORE.module.addIteToCart(id);
-                    alert(message);
+                    ACMESTORE.module.addItemToCart(id, function (message) {
+                        alert(message);
+                    });
+                    
                 },
                 loadMoreProducts: function() {
                     var token = $('.display-products').data('token');
