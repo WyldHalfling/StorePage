@@ -2477,8 +2477,9 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           return ACMESTORE.module.truncateString(string, value);
         },
         addToCart: function addToCart(id) {
-          var message = ACMESTORE.module.addIteToCart(id);
-          alert(message);
+          ACMESTORE.module.addItemToCart(id, function (message) {
+            alert(message);
+          });
         },
         loadMoreProducts: function loadMoreProducts() {
           var token = $('.display-products').data('token');
@@ -2515,7 +2516,10 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 /*!******************************************!*\
   !*** ./resources/assets/js/pages/lib.js ***!
   \******************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
 
 (function () {
   'use strict';
@@ -2528,8 +2532,20 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
         return string;
       }
     },
-    addIteToCart: function addIteToCart(id) {
-      return id;
+    addItemToCart: function addItemToCart(id, callback) {
+      var token = $('.display-products').data('token');
+
+      if (token == null || !token) {
+        token = $('.product').data('token');
+      }
+
+      var postData = $.param({
+        product_id: id,
+        token: token
+      });
+      axios.post('/cart', postData).then(function (response) {
+        callback(response.data.success);
+      });
     }
   };
 })();
@@ -2576,8 +2592,9 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           return ACMESTORE.module.truncateString(string, value);
         },
         addToCart: function addToCart(id) {
-          var message = ACMESTORE.module.addIteToCart(id);
-          alert(message);
+          ACMESTORE.module.addItemToCart(id, function (message) {
+            alert(message);
+          });
         }
       },
       created: function created() {
