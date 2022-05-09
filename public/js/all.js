@@ -2451,7 +2451,10 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
 /*!*******************************************!*\
   !*** ./resources/assets/js/pages/cart.js ***!
   \*******************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
 
 (function () {
   'use strict';
@@ -2465,6 +2468,27 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
         loading: false,
         fail: false,
         message: ''
+      },
+      methods: {
+        displayItems: function displayItems() {
+          this.loading = true;
+          setTimeout(function () {
+            axios.get('/cart/items').then(function (response) {
+              if (response.data.fail) {
+                app.fail = true;
+                app.message = response.data.fail;
+                app.loading = false;
+              } else {
+                app.items = response.data.items;
+                app.cartTotal = response.data.cartTotal;
+                app.loading = false;
+              }
+            });
+          }, 2000);
+        }
+      },
+      created: function created() {
+        this.displayItems();
       }
     });
   };
