@@ -62,8 +62,8 @@
             </div>
 
             <div class="text-center">
-                <i v-show="loading" class="fa fa-spinner fa-spin" style="font-size: 3rem; padding-bottom: 3rem; 
-                    position: fixed; top: 50%; bottom: 20%; color: #0A2B1D"></i>
+                <img v-show="loading" src="/images/loading.gif" style="padding-bottom: 3rem; 
+                    position: fixed; top: 50%; bottom: 20%;">
             </div>
         </section>
     </div>

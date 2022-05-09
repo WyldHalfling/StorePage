@@ -6,7 +6,8 @@
     <div class="product" id="product" data-token="<?php echo e($token); ?>" 
             data-id="<?php echo e($product->id); ?>">
         <div class="text-center">
-            <i v-show="loading" class="fa fa-spinner fa-spin" style="font-size: 3rem; padding-bottom: 3rem; color; #0A0A0A"></i>
+            <img v-show="loading" src="/images/loading.gif" style="padding-bottom: 3rem; 
+                    position: fixed; top: 50%; bottom: 20%;">
         </div>
         <section class="item-container" v-if="loading == false">
             <div class="grid-x grid-padding-x cell">

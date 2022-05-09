@@ -2386,8 +2386,9 @@ __webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/a
 
 __webpack_require__(/*! ../../assets/js/admin/events */ "./resources/assets/js/admin/events.js");
 
-__webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/admin/update.js"); //require('../../assets/js/pages/cart');
+__webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/admin/update.js");
 
+__webpack_require__(/*! ../../assets/js/pages/cart */ "./resources/assets/js/pages/cart.js");
 
 __webpack_require__(/*! ../../assets/js/pages/home_products */ "./resources/assets/js/pages/home_products.js");
 
@@ -2423,6 +2424,10 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
         ACMESTORE.product.details();
         break;
 
+      case 'cart':
+        ACMESTORE.product.cart();
+        break;
+
       case 'adminProduct':
         ACMESTORE.admin.changeEvent();
         ACMESTORE.admin["delete"]();
@@ -2438,6 +2443,31 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
 
     }
   });
+})();
+
+/***/ }),
+
+/***/ "./resources/assets/js/pages/cart.js":
+/*!*******************************************!*\
+  !*** ./resources/assets/js/pages/cart.js ***!
+  \*******************************************/
+/***/ (() => {
+
+(function () {
+  'use strict';
+
+  ACMESTORE.product.cart = function () {
+    var app = new Vue({
+      el: '#shopping_cart',
+      data: {
+        items: [],
+        cartTotal: [],
+        loading: false,
+        fail: false,
+        message: ''
+      }
+    });
+  };
 })();
 
 /***/ }),
@@ -2478,7 +2508,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
         },
         addToCart: function addToCart(id) {
           ACMESTORE.module.addItemToCart(id, function (message) {
-            alert(message);
+            $(".notify").css("display", 'block').delay(4000).slideUp(300).html(message);
           });
         },
         loadMoreProducts: function loadMoreProducts() {
@@ -2593,7 +2623,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
         },
         addToCart: function addToCart(id) {
           ACMESTORE.module.addItemToCart(id, function (message) {
-            alert(message);
+            $(".notify").css("display", 'block').delay(4000).slideUp(300).html(message);
           });
         }
       },

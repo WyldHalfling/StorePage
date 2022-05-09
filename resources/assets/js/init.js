@@ -14,6 +14,9 @@
             case 'product': 
                 ACMESTORE.product.details();
                 break;
+            case 'cart': 
+                ACMESTORE.product.cart();
+                break;
             case 'adminProduct' :
                 ACMESTORE.admin.changeEvent();
                 ACMESTORE.admin.delete();

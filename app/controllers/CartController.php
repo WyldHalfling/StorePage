@@ -8,6 +8,11 @@ use App\Classes\Request;
 use Exception;
 
 class CartController extends BaseController {
+
+    public function show() {
+        return view('cart');
+    }
+
     public function addItem() {
         if (Request::has('post')) {
             $request = Request::get('post');
@@ -21,5 +26,9 @@ class CartController extends BaseController {
                 exit;
             }
         }
+    }
+
+    public function getCartItems() {
+        
     }
 }
