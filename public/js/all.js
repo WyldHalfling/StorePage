@@ -2470,7 +2470,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
         message: ''
       },
       methods: {
-        displayItems: function displayItems() {
+        displayItems: function displayItems(time) {
           this.loading = true;
           setTimeout(function () {
             axios.get('/cart/items').then(function (response) {
@@ -2484,11 +2484,20 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
                 app.loading = false;
               }
             });
-          }, 2000);
+          }, time);
+        },
+        updateQuantity: function updateQuantity(product_id, operator) {
+          var postData = $.param({
+            product_id: product_id,
+            operator: operator
+          });
+          axios.post('/cart/update-qty', postData).then(function (response) {
+            app.displayItems(10);
+          });
         }
       },
       created: function created() {
-        this.displayItems();
+        this.displayItems(2000);
       }
     });
   };

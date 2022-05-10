@@ -26,18 +26,28 @@
                             <tbody>
                                 <tr v-for="item in items">
                                     <td class="medium-text-center">
-                                        <a :href="'//product/' + item.id">
+                                        <a :href="'/product/' + item.id">
                                             <img :src="'/' + item.image" height="60px" width="60px" alt="item.name">
                                         </a>
                                     </td>
                                     <td>
-                                        <h5><a :href="'//product/' + item.id">@{{ item.name }}</a></h5>
+                                        <h5><a :href="'/product/' + item.id">@{{ item.name }}</a></h5>
                                         Status: 
                                         <span v-if="item.stock > 1" style="color: #00AA00">In Stock</span>
                                         <span v-else style="color: #FF0000">Out of Stock</span>
                                     </td>
                                     <td>@{{ item.price }}</td>
-                                    <td>@{{ item.quantity }}</td>
+                                    <td>
+                                        @{{ item.quantity }}
+                                        <button v-if="item.stock > item.quantity" @click="updateQuantity(item.id, '+')" 
+                                            style="cursor: pointer; color: #00AA00;">
+                                            <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                        </button>
+                                        <button v-if="item.quantity > 1" @click="updateQuantity(item.id, '-')" 
+                                            style="cursor: pointer; color: #FF8000">
+                                            <i class="fa fa-minus-square" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
                                     <td>@{{ item.total }}</td>
                                     <td class="text-center">
                                         <button>
