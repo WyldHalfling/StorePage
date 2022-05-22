@@ -30,10 +30,10 @@ const { default: axios } = require("axios");
                     return ACMESTORE.module.truncateString(string, value);
                 },
                 addToCart: function (id) {
-                    ACMESTORE.module.addItemToCart(id, function (message) {
-                        alert(message);
+                   ACMESTORE.module.addItemToCart(id, function (message) {
+                    $(".notify").css("display", 'block').delay(4000).slideUp(300)
+                        .html(message);
                     });
-                    
                 },
                 loadMoreProducts: function() {
                     var token = $('.display-products').data('token');
