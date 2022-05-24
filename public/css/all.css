@@ -6965,6 +6965,16 @@ hr {
   background-color: #ff2424;
 }
 
+.auth {
+  padding: 6rem;
+  margin-bottom: 0.5rem !important;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .auth {
+    padding: 4rem 1rem;
+  }
+}
+
 .slide-in-down.mui-enter {
   transition-duration: 500ms;
   transition-timing-function: linear;
