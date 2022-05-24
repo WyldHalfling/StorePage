@@ -31,7 +31,7 @@ const { default: axios } = require("axios");
                 },
                 addToCart: function (id) {
                    ACMESTORE.module.addItemToCart(id, function (message) {
-                    $(".notify").css("display", 'block').delay(4000).slideUp(300)
+                    $(".notify").css("display", 'block').delay(1000).slideUp(300)
                         .html(message);
                     });
                 },

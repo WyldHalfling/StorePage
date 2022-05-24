@@ -35,7 +35,22 @@ const { default: axios } = require("axios");
                     axios.post('/cart/update-qty', postData).then(function (response) {
                         app.displayItems(10);
                     });
-                }
+                },
+                 removeItem: function (index) {
+                    var postData = $.param({item_index:index});
+                    axios.post('/cart/remove-item', postData).then(function (response) {
+                        $(".notify").css("display", 'block').delay(4000).slideUp(300)
+                            .html(response.data.success);
+                        app.displayItems(200);
+                    })
+                 },
+                 removeAllItem: function () {
+                    axios.post('/cart/clear_cart').then(function (response) {
+                        $(".notify").css("display", 'block').delay(4000).slideUp(300)
+                            .html(response.data.success);
+                        app.displayItems(200);
+                    });
+                 }
              },
              created: function () {
                  this.displayItems(2000);

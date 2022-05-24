@@ -1,8 +1,8 @@
-@extends('layouts.app')
-@section('title', 'Your Shopping Cart')
-@section('data-page-id', 'cart')
 
-@section('content')
+<?php $__env->startSection('title', 'Your Shopping Cart'); ?>
+<?php $__env->startSection('data-page-id', 'cart'); ?>
+
+<?php $__env->startSection('content'); ?>
     <div class="shopping_cart" id="shopping_cart" style="padding: 6rem;">
 
         <div class="text-center">
@@ -31,14 +31,14 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <h5><a :href="'/product/' + item.id">@{{ item.name }}</a></h5>
+                                        <h5><a :href="'/product/' + item.id">{{ item.name }}</a></h5>
                                         Status: 
                                         <span v-if="item.stock > 1" style="color: #00AA00">In Stock</span>
                                         <span v-else style="color: #FF0000">Out of Stock</span>
                                     </td>
-                                    <td>@{{ item.price }}</td>
+                                    <td>{{ item.price }}</td>
                                     <td>
-                                        @{{ item.quantity }}
+                                        {{ item.quantity }}
                                         <button v-if="item.stock > item.quantity" @click="updateQuantity(item.id, '+')" 
                                             style="cursor: pointer; color: #00AA00;">
                                             <i class="fa fa-plus-square" aria-hidden="true"></i>
@@ -48,9 +48,9 @@
                                             <i class="fa fa-minus-square" aria-hidden="true"></i>
                                         </button>
                                     </td>
-                                    <td>@{{ item.total }}</td>
+                                    <td>{{ item.total }}</td>
                                     <td class="text-center">
-                                        <button @click="removeItem(item.index)">
+                                        <button>
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </td>
@@ -72,7 +72,7 @@
                                     <table class="unstriped">
                                         <tr>
                                             <td><h6>Subtotal</h6></td>
-                                            <td class="text-right"><h6>$@{{ cartTotal }}</h6></td>
+                                            <td class="text-right"><h6>${{ cartTotal }}</h6></td>
                                         </tr>
                                         <tr>
                                             <td><h6>Discount Ammount</h6></td>
@@ -84,7 +84,7 @@
                                         </tr>
                                         <tr>
                                             <td><h6>Total</h6></td>
-                                            <td class="text-right"><h6>$@{{ cartTotal }}</h6></td>
+                                            <td class="text-right"><h6>${{ cartTotal }}</h6></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -92,9 +92,6 @@
                         </table>
 
                         <div class="text-right">
-                            <button @click="removeAllItem()" class="button alert float-left" type="submit">
-                                Clear Cart <i class="fa fa-remove" aria-hidden="true"></i>
-                            </button>
                             <a href="/" class="button secondary">
                                 Continue Shopping &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             </a>
@@ -109,4 +106,5 @@
         </section>
 
     </div>
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\PHIL\Desktop\StorePage\resources\views/cart.blade.php ENDPATH**/ ?>
