@@ -2494,6 +2494,21 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
           axios.post('/cart/update-qty', postData).then(function (response) {
             app.displayItems(10);
           });
+        },
+        removeItem: function removeItem(index) {
+          var postData = $.param({
+            item_index: index
+          });
+          axios.post('/cart/remove-item', postData).then(function (response) {
+            $(".notify").css("display", 'block').delay(4000).slideUp(300).html(response.data.success);
+            app.displayItems(200);
+          });
+        },
+        removeAllItem: function removeAllItem() {
+          axios.post('/cart/clear_cart').then(function (response) {
+            $(".notify").css("display", 'block').delay(4000).slideUp(300).html(response.data.success);
+            app.displayItems(200);
+          });
         }
       },
       created: function created() {
@@ -2541,7 +2556,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
         },
         addToCart: function addToCart(id) {
           ACMESTORE.module.addItemToCart(id, function (message) {
-            $(".notify").css("display", 'block').delay(4000).slideUp(300).html(message);
+            $(".notify").css("display", 'block').delay(1000).slideUp(300).html(message);
           });
         },
         loadMoreProducts: function loadMoreProducts() {
