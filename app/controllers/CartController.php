@@ -9,13 +9,16 @@ use App\Classes\Session;
 use App\Models\Product;
 use Exception;
 
-class CartController extends BaseController {
+class CartController extends BaseController
+{
 
-    public function show() {
+    public function show()
+    {
         return view('cart');
     }
 
-    public function addItem() {
+    public function addItem()
+    {
         if (Request::has('post')) {
             $request = Request::get('post');
             if (CSRFToken::verifyCSRFToken($request->token, false)) {
@@ -30,7 +33,8 @@ class CartController extends BaseController {
         }
     }
 
-    public function getCartItems() {
+    public function getCartItems()
+    {
         try {
             $result = [];
             $cartTotal = 0;
@@ -73,7 +77,8 @@ class CartController extends BaseController {
         }
     }
 
-    public function updateQuantity() {
+    public function updateQuantity()
+    {
         if (Request::has('post')) {
             $request = Request::get('post');
             if (!$request->product_id) {
@@ -110,7 +115,8 @@ class CartController extends BaseController {
         }
     }
 
-    public function removeItem() {
+    public function removeItem()
+    {
         if (Request::has('post')) {
             $request = Request::get('post');
 
@@ -125,7 +131,8 @@ class CartController extends BaseController {
         }
     }
 
-    public function removeAllItem() {
+    public function removeAllItem()
+    {
         Cart::clear();
     }
 }

@@ -5,16 +5,19 @@ use PHPMailer\PHPMailer\PHPMailer as PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-class Mail {
+class Mail
+{
     protected $mail;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->mail = new PHPMailer;
         $this->setUp();
 
     }
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->mail->isSMTP();
         $this->mail->Mailer = 'smtp';
         $this->mail->SMTPAuth = true;
@@ -59,7 +62,8 @@ class Mail {
         $this->mail->FromName = $_ENV['APP_NAME'];
     }
 
-    public function send($data) {
+    public function send($data)
+    {
         
         $this->mail->addAddress($data['to'], $data['name']);
         $this->mail->Subject = $data['subject'];

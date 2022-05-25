@@ -3,8 +3,10 @@
 namespace App\Classes;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-class Database {
-    public function __construct() {
+class Database
+{
+    public function __construct()
+    {
         $db = new Capsule;
         $db->addConnection([
             'driver' => $_ENV['DB_DRIVER'],

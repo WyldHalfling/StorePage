@@ -2,7 +2,8 @@
 
 namespace App\Classes;
 
-class UploadFile {
+class UploadFile
+{
     protected $filename;
     protected $maxFilesize = 2097152; // why this number?
     protected $extension;
@@ -12,7 +13,8 @@ class UploadFile {
      * Get the file name
      * @return mixed
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->filename;
     }
 
@@ -21,7 +23,8 @@ class UploadFile {
      * @param $file
      * @param string $name 
      */
-    protected function setName($file, $name = "") {
+    protected function setName($file, $name = "")
+    {
         if ($name === "") {
             $name = pathinfo($file, PATHINFO_FILENAME);
         }
@@ -37,7 +40,8 @@ class UploadFile {
      * @param $file
      * @return mixed
      */
-    protected function fileExtension($file) {
+    protected function fileExtension($file)
+    {
         return $this->extension = pathinfo($file, PATHINFO_EXTENSION);
     }
 
@@ -46,7 +50,8 @@ class UploadFile {
      * @param $file
      * @return bool
      */
-    public static function fileSize($file) {
+    public static function fileSize($file)
+    {
         $fileObj = new static;
         return $file > $fileObj->maxFilesize ? true : false;
     }
@@ -56,7 +61,8 @@ class UploadFile {
      * @param $file
      * @return bool
      */
-    public static function isImage($file) {
+    public static function isImage($file)
+    {
         $fileObj = new static;
         $ext = $fileObj->fileExtension($file);
         $validExt = ['jpg', 'jpeg', 'png', 'bmp', 'gif'];
@@ -70,7 +76,8 @@ class UploadFile {
      * Get the path where the file was uploaded to
      * @return mixed
      */
-    public function path() {
+    public function path()
+    {
         return $this->path;
     }
 
@@ -82,7 +89,8 @@ class UploadFile {
      * @param $newFilename
      * @return null/static
      */
-    public static function move($tempPath, $folder, $file, $newFilename = '') {
+    public static function move($tempPath, $folder, $file, $newFilename = '')
+    {
         $fileObj = new static;
         $ds = DIRECTORY_SEPARATOR;
 

@@ -4,10 +4,12 @@ namespace App\Classes;
 
 use Illuminate\Database\Seeder;
 
-class Cart {
+class Cart
+{
     protected static $isItemInCart = false;
 
-    public static function add($request) {
+    public static function add($request)
+    {
         try {
             $index = 0;
             if (!Session::has('user_cart') || count(Session::get('user_cart')) < 1 ) {
@@ -41,7 +43,8 @@ class Cart {
         }
     }
 
-    public static function removeItem($index) {
+    public static function removeItem($index)
+    {
         if (count(Session::get('user_cart')) <= 1) {
             self::clear();
         } else {
@@ -50,7 +53,8 @@ class Cart {
         }
     }
 
-    public static function clear() {
+    public static function clear()
+    {
         Session::remove('user_cart');
         echo json_encode(['success' => "Cart has been cleared!"]);
     }

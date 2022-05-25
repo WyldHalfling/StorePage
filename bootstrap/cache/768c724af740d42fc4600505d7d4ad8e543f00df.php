@@ -4,13 +4,13 @@
 
 <?php $__env->startSection('content'); ?>
     <div class="auth" id="auth">
-        <section class="login_form text-center">
+        <section class="login_form">
             <div class="grid-x grid-padding-x">
                 <div class="small-12 medium-7 medium-centered">
                     <h2 class="text-center">Login</h2>
                     <?php echo $__env->make('includes.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     <form action="/login" method="post">
-                        <input type="text" name="username" placeholder="Your Username"
+                        <input type="text" name="username" placeholder="Your Username or Email"
                                value="<?php echo e(\App\Classes\Request::old('post', 'username')); ?>">
 
                         <input type="password" name="password" placeholder="Your Password">

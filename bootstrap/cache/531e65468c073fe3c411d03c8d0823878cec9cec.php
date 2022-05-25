@@ -1,11 +1,16 @@
 <div class="grid-x grid-padding-x expanded cell">
-    <?php if(isset($errors) && count((array)$errors)): ?>
+    <?php if((isset($errors) && count((array)$errors)) || \App\Classes\Session::has('error')): ?>
         <div class="callout alert" data-closable>
-            <?php $__currentLoopData = $errors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error_array): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php $__currentLoopData = $error_array; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error_item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php echo e($error_item); ?> <br>
+            <?php if(\App\Classes\Session::has('error')): ?>
+                <?php echo e(\App\Classes\Session::flash('error')); ?>
+
+            <?php else: ?>
+                <?php $__currentLoopData = $errors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error_array): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $error_array; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error_item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php echo e($error_item); ?> <br>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
 
             <button class="close-button" aria-label="Dismiss Message" type="button" data-close>
                 <span arial-hidden="true">&times;</span>
