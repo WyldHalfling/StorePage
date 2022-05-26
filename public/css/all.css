@@ -6975,6 +6975,15 @@ hr {
   }
 }
 
+.shopping_cart {
+  padding: 6rem;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .shopping_cart {
+    padding: 4rem 0.3rem;
+  }
+}
+
 .slide-in-down.mui-enter {
   transition-duration: 500ms;
   transition-timing-function: linear;

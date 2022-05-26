@@ -11,7 +11,12 @@ use App\Models\User;
 
 class AuthController extends BaseController
 {
-
+    public function __construct()
+    {
+        if (isAuthenticated()) {
+            Redirect::to('/');
+        }
+    }
     public function showRegisterForm()
     {
         return view('register');
@@ -100,6 +105,20 @@ class AuthController extends BaseController
             throw new \Exception('Token Mismatch');
         }
         return null;
+    }
+
+    public function logout()
+    {
+        if (isAuthenticated()) {
+            Session::remove('SESSION_USER_ID');
+            Session::remove('SESSION_USER_NAME');
+
+            if (!Session::has('user_cart')) {
+                session_destroy();
+                session_regenerate_id(true);
+            }
+        }
+        Redirect::to('/');
     }
 
 }
