@@ -98,11 +98,21 @@
                             <a href="/" class="button secondary">
                                 Continue Shopping &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             </a>
-                            <button type="submit" class="button success">
+                            <button v-if="authenticated" class="button success">
                                 Checkout &nbsp;<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                             </button>
-                        </div>
+                            <span v-else>
+                                <a href="/login" class="button success">
+                                    Checkout &nbsp;<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                                </a>
+                            </span>
 
+                            <span id="properties" class="hide"
+                                  data-customer_email="<?php echo e(user()->email); ?>"
+                                  data-stripe-key="<?php echo e(\App\Classes\Session::get('publishable_key')); ?>">
+
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

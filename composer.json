@@ -14,7 +14,8 @@
         "illuminate/database": "^8.83",
         "phpmailer/phpmailer": "^6.5",
         "voku/pagination": "^4.0",
-        "nesbot/carbon": "^2.57"
+        "nesbot/carbon": "^2.57",
+        "stripe/stripe-php": "^8.4"
     },
     "require-dev": {
         "filp/whoops": "^2.14"

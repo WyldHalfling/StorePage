@@ -11,6 +11,7 @@ const { default: axios } = require("axios");
                 cartTotal: [],
                 loading: false,
                 fail: false,
+                authenticated: false,
                 message: ''
             },
              methods: {
@@ -26,6 +27,7 @@ const { default: axios } = require("axios");
                                 app.items = response.data.items;
                                 app.cartTotal = response.data.cartTotal;
                                 app.loading = false;
+                                app.authenticated = response.data.authenticated;
                             }
                         });
                     }, time);

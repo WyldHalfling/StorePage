@@ -2467,6 +2467,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
         cartTotal: [],
         loading: false,
         fail: false,
+        authenticated: false,
         message: ''
       },
       methods: {
@@ -2482,6 +2483,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
                 app.items = response.data.items;
                 app.cartTotal = response.data.cartTotal;
                 app.loading = false;
+                app.authenticated = response.data.authenticated;
               }
             });
           }, time);
