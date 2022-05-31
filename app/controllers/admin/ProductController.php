@@ -22,30 +22,35 @@ class ProductController extends BaseController
     public $subcategories_links;
     public $links;
     
-    public function __construct() {
+    public function __construct()
+    {
         $this->categories = Category::all();
         $total = Product::all()->count();
         list($this->products, $this->links) = paginate(10, $total, $this->table_name, new Product);
     }
     
-    public function show() {
+    public function show()
+    {
         $products = $this->products;
         $links = $this->links;
         return view('admin/product/inventory', compact('products', 'links'));
     }
 
-    public function showEditProductForm($id) {
+    public function showEditProductForm($id)
+    {
         $categories = $this->categories;
         $product = Product::where('id', $id)->with(['category', 'subCategory'])->first();
         return view('admin/product/edit', compact('product', 'categories'));
     }
     
-    public function showCreateProductForm() {
+    public function showCreateProductForm()
+    {
         $categories = $this->categories;
         return view('admin/product/create', compact('categories'));
     }
     
-    public function store() {
+    public function store()
+    {
         if (Request::has('post')) {
             $request = Request::get('post');
             $file_error = [];
@@ -104,7 +109,8 @@ class ProductController extends BaseController
         return null;
     }
     
-    public function edit() {
+    public function edit()
+    {
         if (Request::has('post')) {
             $request = Request::get('post');
             $file_error = [];
@@ -161,7 +167,8 @@ class ProductController extends BaseController
         return null;
     }
     
-    public function delete($id) {
+    public function delete($id)
+    {
         if (Request::has('post')) {
             $request = Request::get('post');
             
@@ -175,7 +182,8 @@ class ProductController extends BaseController
         return null;
     }
     
-    public function getSubcategories($id) {
+    public function getSubcategories($id)
+    {
         $subcategories = SubCategory::where('category_id', $id)->get();
         echo json_encode($subcategories);
         exit;

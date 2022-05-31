@@ -4,7 +4,8 @@ namespace App\Classes;
 
 use Exception;
 
-class Session {
+class Session
+{
     /**
      * create a session
      * 
@@ -14,7 +15,8 @@ class Session {
      * @throws \Exception
     */ 
 
-    public static function add($name, $value) {
+    public static function add($name, $value)
+    {
         if ($name != '' && !empty($name) && $value != '' && !empty($value)) {
             return $_SESSION[$name] = $value;
         }
@@ -28,7 +30,8 @@ class Session {
      * @param $name
      * @return mixed 
      */
-    public static function get($name) {
+    public static function get($name)
+    {
         return $_SESSION[$name];
     }
 
@@ -39,7 +42,8 @@ class Session {
      * @return bool
      * @throws \Exception
     */
-    public static function has($name) {
+    public static function has($name)
+    {
         if ($name != '' && !empty($name)) {
             return (isset($_SESSION[$name])) ? true : false ;
         }
@@ -51,7 +55,8 @@ class Session {
      * remove session
      * @param $name
     */ 
-    public static function remove($name) {
+    public static function remove($name)
+    {
         if (self::has($name)) {
             unset($_SESSION[$name]);
         }
@@ -64,7 +69,8 @@ class Session {
      * @param $value
      * @return void
      */
-    public static function flash($name, $value = '') {
+    public static function flash($name, $value = '')
+    {
         if (self::has($name)) {
             $oldValue = self::get($name);
             self::remove($name);

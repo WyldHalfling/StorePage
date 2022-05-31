@@ -3,7 +3,7 @@
 @section('data-page-id', 'cart')
 
 @section('content')
-    <div class="shopping_cart" id="shopping_cart" style="padding: 6rem;">
+    <div class="shopping_cart" id="shopping_cart">
 
         <div class="text-center">
             <img v-show="loading" src="/images/loading.gif">
@@ -98,11 +98,21 @@
                             <a href="/" class="button secondary">
                                 Continue Shopping &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             </a>
-                            <button type="submit" class="button success">
+                            <button v-if="authenticated" class="button success">
                                 Checkout &nbsp;<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                             </button>
-                        </div>
+                            <span v-else>
+                                <a href="/login" class="button success">
+                                    Checkout &nbsp;<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                                </a>
+                            </span>
 
+                            <span id="properties" class="hide"
+                                  data-customer_email="{{ user()->email }}"
+                                  data-stripe-key="{{ \App\Classes\Session::get('publishable_key') }}">
+
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

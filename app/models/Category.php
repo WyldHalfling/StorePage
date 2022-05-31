@@ -5,22 +5,26 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 
-class Category extends Model {
+class Category extends Model
+{
     use SoftDeletes;
 
     public $timestamps = true;
     protected $fillable = ['name', 'slug'];
     protected $dates = ['deleted_at'];
 
-    public function products() {
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
     
-    public function subCategories() {
+    public function subCategories()
+    {
         return $this->hasMany(SubCategory::class);
     }
 
-    public function transform($data) {
+    public function transform($data)
+    {
         $categories = [];
 
         foreach ($data as $item) {

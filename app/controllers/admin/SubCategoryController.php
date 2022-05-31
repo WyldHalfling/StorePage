@@ -11,14 +11,16 @@ use App\Controllers\BaseController;
 use App\Models\Category;
 use App\Models\SubCategory;
 
-class SubCategoryController extends BaseController {
+class SubCategoryController extends BaseController
+{
 
     /**
      * Create new categories
      *
      * @return void
      */
-    public function store() {
+    public function store()
+    {
         if (Request::has('post')) {
             $request = Request::get('post');
             $extra_errors = [];
@@ -72,7 +74,8 @@ class SubCategoryController extends BaseController {
      * @param [type] $id
      * @return void
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         if (Request::has('post')) {
             $request = Request::get('post');
             $extra_errors = [];
@@ -118,7 +121,8 @@ class SubCategoryController extends BaseController {
         return null;
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         if (Request::has('post')) {
             $request = Request::get('post');
             

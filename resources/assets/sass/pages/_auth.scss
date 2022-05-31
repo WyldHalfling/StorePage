@@ -1,0 +1,10 @@
+.auth {
+
+    padding: 6rem;
+
+    @include breakpoint(small only) {
+        padding: 4rem 1rem;
+    }
+
+    margin-bottom: 0.5rem !important;
+}

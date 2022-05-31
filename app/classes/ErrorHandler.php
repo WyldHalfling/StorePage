@@ -2,9 +2,11 @@
 
 namespace App\Classes;
 
-class ErrorHandler {
+class ErrorHandler
+{
 
-    public function handleErrors($error_number, $error_message, $error_file, $error_line) {
+    public function handleErrors($error_number, $error_message, $error_file, $error_line)
+    {
 
         $error = "[{$error_number}] An error occurred in file 
             {$error_file} on line $error_line: $error_message";
@@ -28,13 +30,15 @@ class ErrorHandler {
         }
     }
 
-    public function outputFriendlyError() {
+    public function outputFriendlyError()
+    {
         ob_end_clean();
         view('errors/generic');
         exit;
     }
 
-    public static function emailAdmin($data) {
+    public static function emailAdmin($data)
+    {
         $mail = new Mail();
         $mail->send($data);
         return new static;

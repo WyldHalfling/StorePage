@@ -4,7 +4,7 @@
 
 <div class="title-bar toggle" data-responsive-toggle="main-menu" data-hide-for="medium">
     <button class="menu-icon" type="button" data-toggle="main-menu"></button>
-    <a href="/" class="float-right small-logo">STORE</a>
+    <a href="/" class="float-right small-logo">PK Store</a>
   </div>
   
   <div class="top-bar menu" id="main-menu" data-dropdown-menu 
@@ -44,10 +44,19 @@
         
         <div class="top-bar-right">
             <ul class="dropdown menu vertical medium-horizontal">
-                <li><a href="#">Username</a></li>
-                <li><a href="#">Sign In</a> </li>
-                <li><a href="#">Register</a> </li>
-                <li><a href="/cart">Cart</a> </li>
+                @if(isAuthenticated())
+                    <li><a href="#" style="cursor: default;"> {{ user()->username }}</a></li>
+                    <li><a href="/cart">
+                            Cart &nbsp; <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </a></li>
+                    <li><a href="/logout">Logout</a> </li>
+                @else
+                    <li><a href="/login">Sign In</a> </li>
+                    <li><a href="/register">Register</a> </li>
+                    <li><a href="/cart">
+                            Cart &nbsp; <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </a></li>
+                @endif
             </ul>
         </div>
     </div>

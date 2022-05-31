@@ -6,3 +6,5 @@ require_once(__DIR__ . '/../../vendor/altorouter/AltoRouter.php');
 
 $dotEnv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotEnv->load();
+
+require_once (__DIR__ . '/_stripe.php');
