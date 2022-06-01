@@ -3,7 +3,7 @@
 <?php $__env->startSection('data-page-id', 'cart'); ?>
 
 <?php $__env->startSection('content'); ?>
-    <div class="shopping_cart" id="shopping_cart" style="padding: 6rem;">
+    <div class="shopping_cart" id="shopping_cart">
 
         <div class="text-center">
             <img v-show="loading" src="/images/loading.gif">
@@ -50,7 +50,7 @@
                                     </td>
                                     <td>{{ item.total }}</td>
                                     <td class="text-center">
-                                        <button>
+                                        <button @click="removeItem(item.index)">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </td>
@@ -92,14 +92,27 @@
                         </table>
 
                         <div class="text-right">
+                            <button @click="removeAllItem()" class="button alert float-left" type="submit">
+                                Clear Cart <i class="fa fa-remove" aria-hidden="true"></i>
+                            </button>
                             <a href="/" class="button secondary">
                                 Continue Shopping &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             </a>
-                            <button type="submit" class="button success">
+                            <button v-if="authenticated" class="button success">
                                 Checkout &nbsp;<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                             </button>
-                        </div>
+                            <span v-else>
+                                <a href="/login" class="button success">
+                                    Checkout &nbsp;<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                                </a>
+                            </span>
 
+                            <span id="properties" class="hide"
+                                  data-customer_email="<?php echo e(user()->email); ?>"
+                                  data-stripe-key="<?php echo e(\App\Classes\Session::get('publishable_key')); ?>">
+
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
