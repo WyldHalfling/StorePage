@@ -1,6 +1,9 @@
 
 <?php $__env->startSection('title', 'Your Shopping Cart'); ?>
 <?php $__env->startSection('data-page-id', 'cart'); ?>
+<?php $__env->startSection('stripe-checkout'); ?>
+<script src="https://js.stripe.com/v3/"></script>
+<?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
     <div class="shopping_cart" id="shopping_cart">

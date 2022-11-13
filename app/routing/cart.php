@@ -7,3 +7,5 @@ $router->map('POST', '/cart/update-qty', 'App\Controllers\CartController@updateQ
 $router->map('POST', '/cart/remove-item', 'App\Controllers\CartController@removeItem', 'remove_cart_qty');
 
 $router->map('POST', '/cart/clear_cart', 'App\Controllers\CartController@removeAllItem', 'clear_all_cart');
+
+$router->map('GET', '/cart/payment', 'App\Controllers\CartController@cartPayment', 'cart_payment');

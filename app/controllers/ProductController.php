@@ -7,7 +7,6 @@ use App\Classes\Request;
 use App\Models\Product;
 
 class ProductController extends BaseController {
-    
     public function show($id) {
         $token = CSRFToken::_token();
         $product = Product::where('id', $id)->first();

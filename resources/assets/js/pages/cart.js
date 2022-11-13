@@ -4,11 +4,11 @@ const { default: axios } = require("axios");
     'use strict';
 
     ACMESTORE.product.cart = function () {
-        var app = new Vue({
+        let app = new Vue({
             el: '#shopping_cart',
             data: {
                 items: [],
-                cartTotal: [],
+                cartTotal: 0,
                 loading: false,
                 fail: false,
                 authenticated: false,
@@ -33,13 +33,13 @@ const { default: axios } = require("axios");
                     }, time);
                 }, 
                 updateQuantity: function (product_id, operator) {
-                    var postData = $.param({product_id:product_id, operator:operator});
+                    let postData = $.param({product_id:product_id, operator:operator});
                     axios.post('/cart/update-qty', postData).then(function (response) {
                         app.displayItems(10);
                     });
                 },
                  removeItem: function (index) {
-                    var postData = $.param({item_index:index});
+                    let postData = $.param({item_index:index});
                     axios.post('/cart/remove-item', postData).then(function (response) {
                         $(".notify").css("display", 'block').delay(4000).slideUp(300)
                             .html(response.data.success);

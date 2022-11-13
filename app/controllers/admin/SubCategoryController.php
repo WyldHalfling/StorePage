@@ -13,7 +13,6 @@ use App\Models\SubCategory;
 
 class SubCategoryController extends BaseController
 {
-
     /**
      * Create new categories
      *

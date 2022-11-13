@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/all.css">
     <script src="https://use.fontawesome.com/f4ec21d8eb.js"></script>
+    <script defer src="/js/all.js"></script>
+    <?php echo $__env->yieldContent('stripe-checkout'); ?>
     <!-- Vue 2 --> <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> <!-- -->
     <!-- Vue 3 - -> <script src="https://unpkg.com/vue@next"></script> <!-- -->
 </head>
@@ -14,6 +16,6 @@
     
 <?php echo $__env->yieldContent('body'); ?>
 
-<script async src="/js/all.js"></script>
+
 </body>
 </html><?php /**PATH C:\Users\Phil\Desktop\StorePage\resources\views/layouts/base.blade.php ENDPATH**/ ?>
