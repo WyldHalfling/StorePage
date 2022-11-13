@@ -16,6 +16,7 @@
                 break;
             case 'cart': 
                 ACMESTORE.product.cart();
+                ACMESTORE.product.payment();
                 break;
             case 'adminProduct' :
                 ACMESTORE.admin.changeEvent();

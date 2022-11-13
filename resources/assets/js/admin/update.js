@@ -5,24 +5,24 @@
 
         //update product category
         $(".update-category").on('click', function (e) {
-            var token = $(this).data('token');
-            var id = $(this).attr('id');
-            var name = $("#item-name-"+id).val();
+            let token = $(this).data('token');
+            let id = $(this).attr('id');
+            let name = $("#item-name-"+id).val();
 
             $.ajax({
                 type: 'POST',
                 url: '/admin/product/categories/' + id + '/edit',
                 data: {token:token, name:name},
                 success: function (data) {
-                    var response = JSON.parse(data);
+                    let response = JSON.parse(data);
                     $(".notification").css("display", 'block').removeClass('alert').addClass('primary')
                         .delay(4000).slideUp(300).html(response.success);
                 }, 
                 error: function (request, error) {
-                    var errors = JSON.parse(request.responseText);
-                    var ul = document.createElement('ul');
+                    let errors = JSON.parse(request.responseText);
+                    let ul = document.createElement('ul');
                     $.each(errors, function (key, value) {
-                        var li = document.createElement('li');
+                        let li = document.createElement('li');
                         li.appendChild(document.createTextNode(value));
                         ul.appendChild(li);
                     });
@@ -36,11 +36,11 @@
 
         //update subcategory
         $(".update-subcategory").on('click', function (e) {
-            var token = $(this).data('token');
-            var id = $(this).attr('id');
-            var category_id = $(this).data('category-id');
-            var name = $("#item-subcategory-name-"+id).val();
-            var selected_category_id = $('#item-category-'+category_id + ' option:selected').val();
+            let token = $(this).data('token');
+            let id = $(this).attr('id');
+            let category_id = $(this).data('category-id');
+            let name = $("#item-subcategory-name-"+id).val();
+            let selected_category_id = $('#item-category-'+category_id + ' option:selected').val();
 
             if(category_id !== selected_category_id){
                 category_id = selected_category_id;
@@ -51,15 +51,15 @@
                 url: '/admin/product/subcategory/' + id + '/edit',
                 data: {token: token, name:name, category_id: category_id},
                 success: function (data) {
-                    var response = JSON.parse(data);
+                    let response = JSON.parse(data);
                     $(".notification").css("display", 'block').removeClass('alert').addClass('primary')
                         .delay(4000).slideUp(300).html(response.success);
                 },
                 error:function (request, error) {
-                    var errors = JSON.parse(request.responseText);
-                    var ul = document.createElement('ul');
+                    let errors = JSON.parse(request.responseText);
+                    let ul = document.createElement('ul');
                     $.each(errors, function (key, value) {
-                        var li = document.createElement('li');
+                        let li = document.createElement('li');
                         li.appendChild(document.createTextNode(value));
                         ul.appendChild(li);
                     });

@@ -1,5 +1,5 @@
 <?php
-//use Philo\Blade\Blade;
+
 use Jenssegers\Blade\Blade;
 use voku\helper\Paginator;
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -64,4 +64,17 @@ function user() {
         return User::findOrFail(Session::get('SESSION_USER_ID'));
     }
     return false;
+}
+
+function convertMoneyToCents($value)
+{
+    // remove commas
+    $value = preg_replace("/\,/i","",$value);
+    $value = preg_replace("/([^0-9\.\-])/i","",$value);
+
+    if (!is_numeric($value)) {
+        return 0;
+    }
+    $value = (float) $value;
+    return round($value, 2) *100;
 }

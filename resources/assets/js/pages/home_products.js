@@ -4,7 +4,7 @@ const { default: axios } = require("axios");
     'use strict';
 
     ACMESTORE.homeslider.homePageProducts = function() {
-        var app = new Vue({
+        let app = new Vue({
             el: '#root',
             data: {
                 featured: [],
@@ -36,9 +36,9 @@ const { default: axios } = require("axios");
                     });
                 },
                 loadMoreProducts: function() {
-                    var token = $('.display-products').data('token');
+                    let token = $('.display-products').data('token');
                     this.loading = true;
-                    var data = $.param({next: 2, token: token, count: app.count});
+                    let data = $.param({next: 2, token: token, count: app.count});
                     axios.post('/load-more', data).then(function(response) {
                         app.products = response.data.products;
                         app.count = response.data.count;

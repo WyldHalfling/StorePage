@@ -12,13 +12,13 @@ const { default: axios } = require("axios");
             }
         },
         addItemToCart: function (id, callback) {
-            var token = $('.display-products').data('token');
+            let token = $('.display-products').data('token');
 
             if (token == null || !token) {
                 token = $('.product').data('token');
             }
 
-            var postData = $.param({product_id: id, token: token});
+            let postData = $.param({product_id: id, token: token});
             axios.post('/cart', postData).then(function (response) {
                 callback(response.data.success);
             });

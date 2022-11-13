@@ -11,7 +11,6 @@ use Exception;
 
 class CartController extends BaseController
 {
-
     public function show()
     {
         return view('cart');
@@ -69,6 +68,7 @@ class CartController extends BaseController
             }
 
             $cartTotal = number_format($cartTotal, 2);
+            Session::add('amountInCents', convertMoneyToCents($cartTotal));
             echo json_encode(
                 [
                     'items' => $result, 'cartTotal' => $cartTotal,
@@ -139,5 +139,34 @@ class CartController extends BaseController
     public function removeAllItem()
     {
         Cart::clear();
+    }
+
+    public function cartPayment()
+    {
+
+        $totalInCents = Session::get('amountInCents');
+        \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+
+        try {
+            header('Content-Type: application/json');
+
+            // Create a PaymentIntent with amount and currency
+            $paymentIntent = \Stripe\PaymentIntent::create([
+                'amount' => $totalInCents,
+                'currency' => 'usd',
+                'automatic_payment_methods' => [
+                    'enabled' => true,
+                ],
+            ]);
+
+            $output = [
+                'clientSecret' => $paymentIntent->client_secret,
+            ];
+
+            echo json_encode($output);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(['error' => $e->getMessage()]);
+        }
     }
 }

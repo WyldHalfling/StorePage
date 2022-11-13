@@ -11,8 +11,8 @@ use App\Controllers\BaseController;
 use App\Models\Category;
 use App\Models\SubCategory;
 
-class ProductCategoryController extends BaseController {
-
+class ProductCategoryController extends BaseController
+{
     public $tableName = 'categories';
     public $categories;
     public $subcategories;

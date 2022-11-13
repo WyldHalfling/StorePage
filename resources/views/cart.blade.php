@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Your Shopping Cart')
 @section('data-page-id', 'cart')
+@section('stripe-checkout')
+<script src="https://js.stripe.com/v3/"></script>
+@endsection
 
 @section('content')
     <div class="shopping_cart" id="shopping_cart">
@@ -110,7 +113,6 @@
                             <span id="properties" class="hide"
                                   data-customer_email="{{ user()->email }}"
                                   data-stripe-key="{{ \App\Classes\Session::get('publishable_key') }}">
-
                             </span>
                         </div>
                     </div>

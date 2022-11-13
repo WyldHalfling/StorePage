@@ -4,7 +4,7 @@ const { default: axios } = require("axios");
     'use strict';
 
     ACMESTORE.product.details = function() {
-        var app = new Vue({
+        let app = new Vue({
             el: '#product',
             data: {
                 product: [],
